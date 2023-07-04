@@ -11,7 +11,7 @@ import './index.css'
 const router = createBrowserRouter([
   {
     path: "/signup",
-    element: <Root />,
+    element: <App />,
   },
 ]);
 
