@@ -83,9 +83,14 @@ function BankAccounts() {
         <div>
         <StyledDrawer variant="permanent" anchor="left">
             <div>
+
+                {userInfo ? (<div><p><p>{userInfo.data.user.firstname}{userInfo.data.user.lastname}</p>
+                <p>{userInfo.data.user.email}</p></p></div>) : (<div><p>Edgar J</p><p>@_KathatrinaBernier</p></div>)}
+
+                {/*userInfo 
+                ? <p>{userInfo.data.user.firstname}{userInfo.data.user.lastname}</p>
+                <p>{userInfo.data.user.email}</p> : */}
                 
-                <p>{userInfo.data.user.firstname}{userInfo.data.user.lastname}</p>
-                <p>{userInfo.data.user.email}</p>
                 <p><b>$ 1,681</b><br/><span>Account Balance</span></p>
             </div>
       <List>
@@ -133,7 +138,9 @@ function BankAccounts() {
     <Paper>
         <h4>Bank Accounts</h4>
         <div>
-            {userInfo.data.accountName}
+        {userInfo 
+        ? (<p>{userInfo.data.accountName}</p>) : (<p>O'Hara - Labadie Bank</p>)}
+            
         </div>
         <div>
             Results from back here
