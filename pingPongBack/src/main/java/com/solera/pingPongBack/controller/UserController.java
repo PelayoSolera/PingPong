@@ -6,13 +6,8 @@ import com.solera.pingPongBack.model.User;
 import com.solera.pingPongBack.repository.BankRepository;
 import com.solera.pingPongBack.repository.UserRepository;
 import com.solera.pingPongBack.service.CommonService;
-import com.solera.pingPongBack.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collections;
-import java.util.List;
 
 @RestController
 @RequestMapping("/signup")
@@ -47,6 +42,16 @@ public class UserController {
     public User getUsersByName(@RequestParam("firstname") String name) {
         return userRepository.findByName(name);
     }
+
+    //http://localhost:8081/signup/bank?user=3
+    @GetMapping("/bank")
+    public Bank getNameBankById(@RequestParam("user") User user) {
+        System.out.println("-------------> "+user);
+        return bankRepository.findByUserId(user);
+    }
+
+
+
 
 
 
