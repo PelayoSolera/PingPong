@@ -83,7 +83,7 @@ function BankAccounts() {
                 {/*userInfo 
                 ? <p>{userInfo.data.user.firstname}{userInfo.data.user.lastname}</p>
                 <p>{userInfo.data.user.email}</p> : */}
-                
+                 
                 <p><b>$ 1,681</b><br/><span>Account Balance</span></p>
             </div>
       <List>
