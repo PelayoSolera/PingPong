@@ -44,10 +44,13 @@ function BankAccounts() {
 
     const [userInfo, setUserInfo] = useState()
 
+    let paramsUser = 4
+
     useEffect(()=>{
-        axios.get("http://localhost:8081/signup/bank", {params: {user: 4}})
+        axios.get('http://localhost:8081/signup/bank?user=4')
         .then((response) => {
-            setUserInfo(response)
+            console.log(response)
+            //setUserInfo(response)
         })
         .catch((error) => {
           console.error("error.response: ", (error.response))
