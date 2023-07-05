@@ -33,9 +33,9 @@ function SignUp() {
       .catch((error) => {
         console.error("error.response: ", (error.response))
       })  
-/*      .finally(
+      .finally(
         navigate("/bankaccounts")
-      )*/
+      )
   }
 
   return (
