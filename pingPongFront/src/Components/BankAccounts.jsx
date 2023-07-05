@@ -24,19 +24,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import axios from 'axios';
 import Link from '@mui/material/Link';
 
-const [userInfo, setUserInfo] = useState()
-
-useEffect(()=>{
-    axios.get("http://localhost:8081/signup/bank", { params: { user: 4 } })
-    .then((response) => {
-        setUserInfo(response)
-    })
-    .catch((error) => {
-      console.error("error.response: ", (error.response))
-    }).finally(console.log(userInfo))  
-},[])
-
-
 const drawerWidth = 240;
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -50,7 +37,17 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 
 function BankAccounts() {
 
+    const [userInfo, setUserInfo] = useState()
 
+    useEffect(()=>{
+        axios.get('http://localhost:8081/signup/bank?user=1')
+        .then((response) => {
+            setUserInfo(response.data)
+        })
+        .catch((error) => {
+          console.error("error.response: ", (error.response))
+        }).finally(console.log(userInfo))  
+    },[])
 
   return (
     <div>
@@ -79,10 +76,15 @@ function BankAccounts() {
         <div>
         <StyledDrawer variant="permanent" anchor="left">
             <div>
-                
-                <p>Edgar J</p>
-                <p>@Katharina_Bernier</p>
-                <p>$ 1,681<br/><span>Account Balance</span></p>
+
+                {userInfo ? (<div><p><p>{userInfo.user.firstname}{userInfo.user.lastname}</p>
+                <p>{userInfo.user.email}</p></p></div>) : (<div><p>Edgar J</p><p>@_KathatrinaBernier</p></div>)}
+
+                {/*userInfo 
+                ? <p>{userInfo.data.user.firstname}{userInfo.data.user.lastname}</p>
+                <p>{userInfo.data.user.email}</p> : */}
+                 
+                <p><b>$ 1,681</b><br/><span>Account Balance</span></p>
             </div>
       <List>
         <ListItem>
@@ -128,6 +130,11 @@ function BankAccounts() {
         <div className='bankAccountBody'>
     <Paper>
         <h4>Bank Accounts</h4>
+        <div>
+        {userInfo 
+        ? (<p>{userInfo.accountName}</p>) : (<p>O'Hara - Labadie Bank</p>)}
+            
+        </div>
         <div>
             Results from back here
         </div>

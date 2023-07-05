@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import  "./BankAccounts";
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import AppBar from '@mui/material/AppBar';
@@ -21,6 +21,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Paper, TextField } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
+import axios from 'axios';
 import Link from '@mui/material/Link';
 
 const drawerWidth = 240;
@@ -34,7 +35,22 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
+
+
 function Settings() {
+
+    const [userInfo, setUserInfo] = useState()
+
+    useEffect(()=>{
+        axios.get('http://localhost:8081/signup/bank?user=1')
+        .then((response) => {
+            setUserInfo(response.data)
+        })
+        .catch((error) => {
+          console.error("error.response: ", (error.response))
+        }).finally(console.log(userInfo))  
+    },[])
+
   return (
 
     <div>
@@ -64,8 +80,8 @@ function Settings() {
         <StyledDrawer variant="permanent" anchor="left">
             <div>
                 
-                <p>Edgar J</p>
-                <p>@Katharina_Bernier</p>
+            {userInfo ? (<div><p><p>{userInfo.user.firstname}{userInfo.user.lastname}</p>
+                <p>{userInfo.user.email}</p></p></div>) : (<div><p>Edgar J</p><p>@_KathatrinaBernier</p></div>)}
                 <p>$ 1,681<br/><span>Account Balance</span></p>
             </div>
       <List>
@@ -113,9 +129,9 @@ function Settings() {
     <Paper>
         <h4>User Settings</h4>
         <div className='bankAccountsForm'>
-        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>Edgar</TextField>
-        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>Johns</TextField>
-        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>Norene@yahoo.com</TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield' value={userInfo ? (userInfo.user.firstname) : ("Edgar")}></TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield' value={userInfo ? (userInfo.user.lastname) : ("Johns") }></TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield' value={userInfo ? (userInfo.user.email) : ("Norene39@yahoo.com") }></TextField>
         <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>625-316-9882</TextField>
 
         <Button sx={{ width: "10rem" }} variant="contained" type="submit">SAVE</Button>

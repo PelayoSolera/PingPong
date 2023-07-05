@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BankRepository extends JpaRepository<Bank, Integer> {
 
-
+    @Query("SELECT u FROM Bank u WHERE u.user = :user")
+    Bank findByUserId(@Param("user") User user);
 
 }

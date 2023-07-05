@@ -1,24 +1,23 @@
 package com.solera.pingPongBack.model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "user")
-public class User {
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "person")
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    private int id_person;
 
     private String firstname;
     private String lastname;
-    private String email;
-    private String password;
-    private String phone;
+    private String amount;
 
 }
