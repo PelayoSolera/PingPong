@@ -1,7 +1,9 @@
 package com.solera.pingPongBack.controller;
 
 
+import com.solera.pingPongBack.model.Bank;
 import com.solera.pingPongBack.model.User;
+import com.solera.pingPongBack.repository.BankRepository;
 import com.solera.pingPongBack.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +18,17 @@ public class UserController {
     @Autowired
     private CommonService commonService;
 
+    @Autowired
+    private BankRepository bankRepository;
+
     @PostMapping("/add")
     public String add(@RequestBody User user) {
+
+        Bank bank = new Bank(user, "O'Hara - Labadie Bank");
+
         commonService.saveUser(user);
+        bankRepository.save(bank);
+
         return "Student added";
     }
 
