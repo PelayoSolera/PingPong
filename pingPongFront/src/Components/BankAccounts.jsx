@@ -47,10 +47,9 @@ function BankAccounts() {
     let paramsUser = 4
 
     useEffect(()=>{
-        axios.get('http://localhost:8081/signup/bank?user=4')
+        axios.get('http://localhost:8081/signup/bank?user=1')
         .then((response) => {
-            console.log(response)
-            //setUserInfo(response)
+            setUserInfo(response.data)
         })
         .catch((error) => {
           console.error("error.response: ", (error.response))
@@ -85,9 +84,9 @@ function BankAccounts() {
         <StyledDrawer variant="permanent" anchor="left">
             <div>
                 
-                <p>Edgar J</p>
-                <p>@Katharina_Bernier</p>
-                <p>$ 1,681<br/><span>Account Balance</span></p>
+                <p>{userInfo.data.user.firstname}{userInfo.data.user.lastname}</p>
+                <p>{userInfo.data.user.email}</p>
+                <p><b>$ 1,681</b><br/><span>Account Balance</span></p>
             </div>
       <List>
         <ListItem>
@@ -133,6 +132,9 @@ function BankAccounts() {
         <div className='bankAccountBody'>
     <Paper>
         <h4>Bank Accounts</h4>
+        <div>
+            {userInfo.data.accountName}
+        </div>
         <div>
             Results from back here
         </div>
