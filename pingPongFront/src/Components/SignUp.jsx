@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios"
+import { useNavigate } from 'react-router';
 
 function SignUp() {
 
@@ -10,6 +11,8 @@ function SignUp() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmpassword, setConfirmpassword] = useState();
+
+  const navigate = useNavigate()
 
   const handleFirstName = (e) => setFirstname(e.target.value);
   const handleLastName = (e) => setLastname(e.target.value);
@@ -22,10 +25,15 @@ function SignUp() {
     const requestBody = { firstname, lastname, email, password };
     axios.post("http://localhost:8081/signup/add", requestBody)
     .then((response) => {
-      console.log(response)})
+      console.log(response)
+    //  navigate("/bankaccounts")
+    })
       .catch((error) => {
-        console.log(console.error(error))
+        console.error("error.response: ", (error.response))
       })  
+      .finally(
+        navigate("/bankaccounts")
+      )
   }
 
   return (
