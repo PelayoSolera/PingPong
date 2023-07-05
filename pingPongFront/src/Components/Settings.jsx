@@ -35,6 +35,8 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
+const fieldFirstName = userInfo ? (userInfo.user.firstname) : ("Edgar")
+
 function Settings() {
 
     const [userInfo, setUserInfo] = useState()
@@ -127,9 +129,9 @@ function Settings() {
     <Paper>
         <h4>User Settings</h4>
         <div className='bankAccountsForm'>
-        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield' value={userInfo.user.firstname}></TextField>
-        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield' value={userInfo.user.lastname}></TextField>
-        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'></TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield' value={userInfo ? (userInfo.user.firstname) : ("Edgar")}></TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield' value={userInfo ? (userInfo.user.lastname) : ("Johns") }></TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield' value={userInfo ? (userInfo.user.email) : ("Norene39@yahoo.com") }></TextField>
         <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>625-316-9882</TextField>
 
         <Button sx={{ width: "10rem" }} variant="contained" type="submit">SAVE</Button>
