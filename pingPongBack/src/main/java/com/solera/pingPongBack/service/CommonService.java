@@ -8,6 +8,4 @@ public interface CommonService {
     public User saveUser(User user);
     public Bank saveBank(Bank bank);
 
-    //public User getUserByName(String name);
-
 }
