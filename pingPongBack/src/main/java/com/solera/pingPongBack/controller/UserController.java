@@ -2,8 +2,10 @@ package com.solera.pingPongBack.controller;
 
 
 import com.solera.pingPongBack.model.Bank;
+import com.solera.pingPongBack.model.Person;
 import com.solera.pingPongBack.model.User;
 import com.solera.pingPongBack.repository.BankRepository;
+import com.solera.pingPongBack.repository.PersonRepository;
 import com.solera.pingPongBack.repository.UserRepository;
 import com.solera.pingPongBack.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class UserController {
     @Autowired
     private BankRepository bankRepository;
 
+    @Autowired
+    private PersonRepository personRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -29,9 +33,15 @@ public class UserController {
     public String add(@RequestBody User user) {
 
         Bank bank = new Bank(user, "O'Hara - Labadie Bank");
+        Person person = new Person(1, "Arely", "Kertzmann", "-$259.71");
+        Person person2 = new Person(2, "Ibrahim", "Dickens", "-$140.36");
+        Person person3 = new Person(3, "Edgar", "Johns", "-$363.14");
 
         commonService.saveUser(user);
         bankRepository.save(bank);
+        personRepository.save(person);
+        personRepository.save(person2);
+        personRepository.save(person3);
 
         return "Student added";
     }
@@ -49,9 +59,6 @@ public class UserController {
         System.out.println("-------------> "+user);
         return bankRepository.findByUserId(user);
     }
-
-
-
 
 
 
