@@ -8,6 +8,7 @@ import java.util.List;
 public interface CommonService {
 
     public User saveUser(User user);
-    //public User getUserByName(String name);
+    public Bank saveBank(Bank bank);
+
 
 }
