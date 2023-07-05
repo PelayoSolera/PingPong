@@ -55,9 +55,10 @@ function BankAccounts() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <LocalAtmIcon/> Real World App
+          <LocalAtmIcon sx={{marginLeft: "35rem"}}/> Real World App
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button sx={{backgroundColor: "green"}} color="inherit">$ NEW</Button>
+          <NotificationsIcon/>
         </Toolbar>
       </AppBar>
     </Box>
@@ -112,6 +113,8 @@ function BankAccounts() {
         <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>Johns</TextField>
         <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>Norene@yahoo.com</TextField>
         <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>625-316-9882</TextField>
+
+        <Button sx={{ width: "10rem" }} variant="contained" type="submit">SAVE</Button>
         </div>
 
     </Paper>
