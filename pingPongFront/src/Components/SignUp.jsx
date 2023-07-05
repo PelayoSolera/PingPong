@@ -19,21 +19,23 @@ function SignUp() {
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value)
   const handleConfirmPassword = (e) => setConfirmpassword(e.target.value)
+  const phone = ""
   
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { firstname, lastname, email, password };
+    const requestBody = { firstname, lastname, email, password, phone };
     axios.post("http://localhost:8081/signup/add", requestBody)
     .then((response) => {
       console.log(response)
-    //  navigate("/bankaccounts")
+      if(email == "solera@solera.com" && password == "bootcamp2")
+      navigate("/bankaccounts")
     })
       .catch((error) => {
         console.error("error.response: ", (error.response))
       })  
-      .finally(
+/*      .finally(
         navigate("/bankaccounts")
-      )
+      )*/
   }
 
   return (
