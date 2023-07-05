@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import  "./BankAccounts";
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import AppBar from '@mui/material/AppBar';
@@ -24,7 +24,17 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import axios from 'axios';
 import Link from '@mui/material/Link';
 
+const [userInfo, setUserInfo] = useState()
 
+useEffect(()=>{
+    axios.get("http://localhost:8081/signup/bank", { params: { user: 4 } })
+    .then((response) => {
+        setUserInfo(response)
+    })
+    .catch((error) => {
+      console.error("error.response: ", (error.response))
+    }).finally(console.log(userInfo))  
+},[])
 
 
 const drawerWidth = 240;
