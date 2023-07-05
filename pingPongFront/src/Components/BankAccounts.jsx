@@ -26,15 +26,7 @@ import Link from '@mui/material/Link';
 
 const [userInfo, setUserInfo] = useState()
 
-useEffect(()=>{
-    axios.get("http://localhost:8081/signup/bank", { params: { user: 4 } })
-    .then((response) => {
-        setUserInfo(response)
-    })
-    .catch((error) => {
-      console.error("error.response: ", (error.response))
-    }).finally(console.log(userInfo))  
-},[])
+
 
 
 const drawerWidth = 240;
@@ -50,7 +42,15 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 
 function BankAccounts() {
 
-
+    useEffect(()=>{
+        axios.get("http://localhost:8081/signup/bank", { params: { user: 4 } })
+        .then((response) => {
+            setUserInfo(response)
+        })
+        .catch((error) => {
+          console.error("error.response: ", (error.response))
+        }).finally(console.log(userInfo))  
+    },[])
 
   return (
     <div>
