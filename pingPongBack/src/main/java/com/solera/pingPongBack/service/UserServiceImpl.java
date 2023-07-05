@@ -30,12 +30,12 @@ public class UserServiceImpl implements CommonService {
 
     @Override
     public Person savePerson(Person person) {
-        return null;
+        return personRepository.save(person);
     }
 
     @Override
     public Bank saveBank(Bank bank) {
-        return null;
+        return bankRepository.save(bank);
     }
 
 
