@@ -11,6 +11,8 @@ import com.solera.pingPongBack.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/signup")
 @CrossOrigin
@@ -58,6 +60,11 @@ public class UserController {
     public Bank getNameBankById(@RequestParam("user") User user) {
         System.out.println("-------------> "+user);
         return bankRepository.findByUserId(user);
+    }
+
+    @GetMapping("/personal")
+    public List<Person> getAllPerson(Person person) {
+        return personRepository.findAll();
     }
 
 

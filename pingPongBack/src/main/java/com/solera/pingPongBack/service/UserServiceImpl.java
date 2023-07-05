@@ -39,5 +39,10 @@ public class UserServiceImpl implements CommonService {
     }
 
 
+    public List<Person> getPerson(Person person){
+        return personRepository.findAll();
+    }
+
+
 
 }
