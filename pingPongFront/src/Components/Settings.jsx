@@ -127,9 +127,9 @@ function Settings() {
     <Paper>
         <h4>User Settings</h4>
         <div className='bankAccountsForm'>
-        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>Edgar</TextField>
-        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>Johns</TextField>
-        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>Norene@yahoo.com</TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield' value={userInfo.user.firstname}></TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield' value={userInfo.user.lastname}></TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'></TextField>
         <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>625-316-9882</TextField>
 
         <Button sx={{ width: "10rem" }} variant="contained" type="submit">SAVE</Button>
