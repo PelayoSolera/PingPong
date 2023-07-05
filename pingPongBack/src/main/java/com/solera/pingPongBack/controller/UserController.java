@@ -21,9 +21,9 @@ public class UserController {
     @Autowired
     private BankRepository bankRepository;
 
+
     @Autowired
     private UserRepository userRepository;
-
 
     @PostMapping("/add")
     public String add(@RequestBody User user) {

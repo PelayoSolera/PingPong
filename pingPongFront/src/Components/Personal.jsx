@@ -23,7 +23,7 @@ import { Paper, TextField } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import axios from 'axios';
 import Link from '@mui/material/Link';
-
+import { height } from '@mui/system';
 
 
 
@@ -38,12 +38,10 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-function BankAccounts() {
 
-
-
+function Personal() {
   return (
-    <div>
+<div>
         <div>
     <Box sx={{ flexGrow: 1, marginLeft: 28, alignItems: "center", justifyContent: "center", alignContent: "center",  }}>
       <AppBar position="static">
@@ -116,19 +114,13 @@ function BankAccounts() {
     </StyledDrawer>
         </div>
         <div className='bankAccountBody'>
-    <Paper>
-        <h4>Bank Accounts</h4>
-        <div>
-            Results from back here
-        </div>
-        <div>
-        <Button sx={{ width: "10rem"  }} variant="contained" type="submit">CREATE</Button>
-        <Button sx={{ width: "10rem" }} variant="contained" type="submit">DELETE</Button>
-        </div>
+    <Paper sx={{margin:"5rem, 10rem", height:"700px"}}>
+    <Button sx={{ width: "10rem", borderRadius:"25px" }} variant="outlined">Date: ALL</Button>
+    <Button sx={{ width: "15rem", borderRadius:"25px" }} variant="outlined">Amount: $0 - $1000</Button>
     </Paper>
         </div>
         </div>
   )
 }
 
-export default BankAccounts
+export default Personal

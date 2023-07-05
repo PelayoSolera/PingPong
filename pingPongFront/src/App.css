@@ -54,9 +54,9 @@
 /*
   2. Remove default margin
 */
-* {
+/* {
   margin: 0;
-}
+}*/
 /*
   Typographic tweaks!
   3. Add accessible line-height
@@ -70,7 +70,7 @@ body {
   5. Improve media defaults
 */
 img, picture, video, canvas, svg {
-  display: block;
+  /*display: block;*/
   max-width: 100%;
 }
 /*
@@ -106,3 +106,19 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
   color: #333;
 }
+
+.bankAccountBody {
+  margin-left: 240px;
+  }
+
+  .bankAccountsForm {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bankAccountsTextfield {
+    max-width: 50%;
+    margin: 1rem;
+    padding: 1rem;
+    
+  }
