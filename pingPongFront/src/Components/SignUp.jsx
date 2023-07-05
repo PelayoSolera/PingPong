@@ -17,11 +17,15 @@ function SignUp() {
   const handlePassword = (e) => setPassword(e.target.value)
   const handleConfirmPassword = (e) => setConfirmpassword(e.target.value)
   
-  function handleSignupSubmit() {
-
+  const handleSignupSubmit = (e) => {
+    e.preventDefault();
     const requestBody = { firstname, lastname, email, password };
-
-    axios.post("http://localhost:8081/signup/add", requestBody).then
+    axios.post("http://localhost:8081/signup/add", requestBody)
+    .then((response) => {
+      console.log(response)})
+      .catch((error) => {
+        console.log(console.error(error))
+      })  
   }
 
   return (
