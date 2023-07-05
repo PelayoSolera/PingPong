@@ -21,11 +21,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Paper, TextField } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
-import axios from 'axios';
 import Link from '@mui/material/Link';
-
-
-
 
 const drawerWidth = 240;
 
@@ -38,11 +34,9 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-function BankAccounts() {
-
-
-
+function Settings() {
   return (
+
     <div>
         <div>
     <Box sx={{ flexGrow: 1, marginLeft: 28, alignItems: "center", justifyContent: "center", alignContent: "center",  }}>
@@ -117,18 +111,20 @@ function BankAccounts() {
         </div>
         <div className='bankAccountBody'>
     <Paper>
-        <h4>Bank Accounts</h4>
-        <div>
-            Results from back here
+        <h4>User Settings</h4>
+        <div className='bankAccountsForm'>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>Edgar</TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>Johns</TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>Norene@yahoo.com</TextField>
+        <TextField sx={{padding: '0.5rem'}} className='bankAccountsTextfield'>625-316-9882</TextField>
+
+        <Button sx={{ width: "10rem" }} variant="contained" type="submit">SAVE</Button>
         </div>
-        <div>
-        <Button sx={{ width: "10rem"  }} variant="contained" type="submit">CREATE</Button>
-        <Button sx={{ width: "10rem" }} variant="contained" type="submit">DELETE</Button>
-        </div>
+
     </Paper>
         </div>
-        </div>
+    </div>
   )
 }
 
-export default BankAccounts
+export default Settings
