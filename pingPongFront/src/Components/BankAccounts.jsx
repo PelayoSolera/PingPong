@@ -23,7 +23,6 @@ import { Paper, TextField } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import axios from 'axios';
 import Link from '@mui/material/Link';
-import { useEffect } from 'react';
 
 const [userInfo, setUserInfo] = useState()
 
