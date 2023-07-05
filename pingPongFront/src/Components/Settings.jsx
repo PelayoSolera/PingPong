@@ -35,7 +35,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-const fieldFirstName = userInfo ? (userInfo.user.firstname) : ("Edgar")
+
 
 function Settings() {
 
