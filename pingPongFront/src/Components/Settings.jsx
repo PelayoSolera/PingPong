@@ -35,6 +35,19 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 }));
 
 function Settings() {
+
+    const [userInfo, setUserInfo] = useState()
+
+    useEffect(()=>{
+        axios.get('http://localhost:8081/signup/bank?user=1')
+        .then((response) => {
+            setUserInfo(response.data)
+        })
+        .catch((error) => {
+          console.error("error.response: ", (error.response))
+        }).finally(console.log(userInfo))  
+    },[])
+
   return (
 
     <div>
@@ -64,8 +77,8 @@ function Settings() {
         <StyledDrawer variant="permanent" anchor="left">
             <div>
                 
-                <p>Edgar J</p>
-                <p>@Katharina_Bernier</p>
+            {userInfo ? (<div><p><p>{userInfo.user.firstname}{userInfo.user.lastname}</p>
+                <p>{userInfo.user.email}</p></p></div>) : (<div><p>Edgar J</p><p>@_KathatrinaBernier</p></div>)}
                 <p>$ 1,681<br/><span>Account Balance</span></p>
             </div>
       <List>

@@ -39,8 +39,6 @@ function BankAccounts() {
 
     const [userInfo, setUserInfo] = useState()
 
-    let paramsUser = 4
-
     useEffect(()=>{
         axios.get('http://localhost:8081/signup/bank?user=1')
         .then((response) => {
