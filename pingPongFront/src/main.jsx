@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import './index.css'
 import { element } from 'prop-types';
+import Settings from './Components/Settings.jsx';
+import Personal from './Components/Personal.jsx';
 
 import BankAccounts from './Components/BankAccounts.jsx';
 
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
 {
   path: "/bankaccounts",
   element: <BankAccounts/>,
+},
+{
+  path: "/user/settings",
+  element: <Settings/>,
+},
+{
+  path: "/personal",
+  element: <Personal/>
 }
 
 ]);
