@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import  "./BankAccounts";
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import AppBar from '@mui/material/AppBar';
@@ -27,6 +27,8 @@ import Link from '@mui/material/Link';
 
 
 
+
+
 const drawerWidth = 240;
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -40,7 +42,19 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 
 function BankAccounts() {
 
+    const [userInfo, setUserInfo] = useState()
 
+    let paramsUser = 4
+
+    useEffect(()=>{
+        axios.get('http://localhost:8081/signup/bank?user=1')
+        .then((response) => {
+            setUserInfo(response.data)
+        })
+        .catch((error) => {
+          console.error("error.response: ", (error.response))
+        }).finally(console.log(userInfo))  
+    },[])
 
   return (
     <div>
@@ -70,9 +84,9 @@ function BankAccounts() {
         <StyledDrawer variant="permanent" anchor="left">
             <div>
                 
-                <p>Edgar J</p>
-                <p>@Katharina_Bernier</p>
-                <p>$ 1,681<br/><span>Account Balance</span></p>
+                <p>{userInfo.data.user.firstname}{userInfo.data.user.lastname}</p>
+                <p>{userInfo.data.user.email}</p>
+                <p><b>$ 1,681</b><br/><span>Account Balance</span></p>
             </div>
       <List>
         <ListItem>
@@ -118,6 +132,9 @@ function BankAccounts() {
         <div className='bankAccountBody'>
     <Paper>
         <h4>Bank Accounts</h4>
+        <div>
+            {userInfo.data.accountName}
+        </div>
         <div>
             Results from back here
         </div>
