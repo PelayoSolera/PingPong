@@ -28,15 +28,14 @@ function SignUp() {
       axios.post("http://localhost:8081/signup/add", requestBody)
       .then((response) => {
         console.log(response)
-        if(email == "solera@solera.com" && password == "bootcamp2")
         navigate("/bankaccounts")
       })
       .catch((error) => {
         console.error("error.response: ", (error.response))
       })  
-      .finally(
+      /*.finally(
         navigate("/bankaccounts")
-        )
+        )*/
       }
       }
 
