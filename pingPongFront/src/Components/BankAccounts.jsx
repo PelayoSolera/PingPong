@@ -24,7 +24,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import axios from 'axios';
 import Link from '@mui/material/Link';
 
-const [userInfo, setUserInfo] = useState()
+
 
 
 
@@ -41,6 +41,8 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 }));
 
 function BankAccounts() {
+
+    const [userInfo, setUserInfo] = useState()
 
     useEffect(()=>{
         axios.get("http://localhost:8081/signup/bank", { params: { user: 4 } })
