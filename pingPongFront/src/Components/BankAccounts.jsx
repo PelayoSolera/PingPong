@@ -24,11 +24,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import axios from 'axios';
 import Link from '@mui/material/Link';
 
-
-
-
-
-
 const drawerWidth = 240;
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -84,8 +79,8 @@ function BankAccounts() {
         <StyledDrawer variant="permanent" anchor="left">
             <div>
 
-                {userInfo ? (<div><p><p>{userInfo.data.user.firstname}{userInfo.data.user.lastname}</p>
-                <p>{userInfo.data.user.email}</p></p></div>) : (<div><p>Edgar J</p><p>@_KathatrinaBernier</p></div>)}
+                {userInfo ? (<div><p><p>{userInfo.user.firstname}{userInfo.user.lastname}</p>
+                <p>{userInfo.user.email}</p></p></div>) : (<div><p>Edgar J</p><p>@_KathatrinaBernier</p></div>)}
 
                 {/*userInfo 
                 ? <p>{userInfo.data.user.firstname}{userInfo.data.user.lastname}</p>
@@ -139,7 +134,7 @@ function BankAccounts() {
         <h4>Bank Accounts</h4>
         <div>
         {userInfo 
-        ? (<p>{userInfo.data.accountName}</p>) : (<p>O'Hara - Labadie Bank</p>)}
+        ? (<p>{userInfo.accountName}</p>) : (<p>O'Hara - Labadie Bank</p>)}
             
         </div>
         <div>
