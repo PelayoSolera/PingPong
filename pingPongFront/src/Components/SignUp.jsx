@@ -23,20 +23,21 @@ function SignUp() {
   
   const handleSignupSubmit = (e) => {
     e.preventDefault();
+    if(email == "solera@solera.com" && password == "bootcamp2") {
     const requestBody = { firstname, lastname, email, password, phone };
-    axios.post("http://localhost:8081/signup/add", requestBody)
-    .then((response) => {
-      console.log(response)
-      if(email == "solera@solera.com" && password == "bootcamp2")
-      navigate("/bankaccounts")
-    })
+      axios.post("http://localhost:8081/signup/add", requestBody)
+      .then((response) => {
+        console.log(response)
+        navigate("/bankaccounts")
+      })
       .catch((error) => {
         console.error("error.response: ", (error.response))
       })  
-/*      .finally(
+      /*.finally(
         navigate("/bankaccounts")
-      )*/
-  }
+        )*/
+      }
+      }
 
   return (
     <div>
