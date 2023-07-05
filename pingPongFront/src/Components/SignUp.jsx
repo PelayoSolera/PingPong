@@ -7,9 +7,15 @@ function SignUp() {
 
   const [firstname, setFirstname] = useState();
   const [lastname, setLastname] = useState();
-  const [email, SetEmail] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmpassword, setConfirmpassword] = useState();
+
+  const handleFirstName = (e) => setFirstname(e.target.value);
+  const handleLastName = (e) => setLastname(e.target.value);
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handlePassword = (e) => setPassword(e.target.value)
+  const handleConfirmPassword = (e) => setConfirmpassword(e.target.value)
   
   function handleSignupSubmit() {
 
@@ -32,6 +38,7 @@ function SignUp() {
                 name="firstname"
                 label="First Name"
                 value={firstname}
+                onChange={handleFirstName}
                 >
                   
                 </TextField>
@@ -45,6 +52,7 @@ function SignUp() {
           name='lastname'
           label="Last Name"
           value={lastname}
+          onChange={handleLastName}
           >
           </TextField>
         </div>
@@ -57,6 +65,7 @@ function SignUp() {
           name='userName'
           label="Username"
           value={email}
+          onChange={handleEmail}
           >
           </TextField>
         </div>
@@ -69,6 +78,7 @@ function SignUp() {
           name='password'
           label="Password"
           value={password}
+          onChange={handlePassword}
           >
           </TextField>
         </div>
@@ -81,6 +91,7 @@ function SignUp() {
           name='confirmpassword'
           label="Confirm Password"
           value={confirmpassword}
+          onChange={handleConfirmPassword}
           >
           </TextField>
         </div>
