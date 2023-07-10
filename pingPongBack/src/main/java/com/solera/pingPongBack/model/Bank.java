@@ -12,14 +12,6 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Bank {
 
-    public Bank(User user, String accountName) {
-        this.user = user;
-        this.accountName = accountName;
-    }
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int accountId;
-
     @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
