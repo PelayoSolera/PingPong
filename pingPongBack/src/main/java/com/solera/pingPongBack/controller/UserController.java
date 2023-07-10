@@ -35,11 +35,13 @@ public class UserController {
     public String add(@RequestBody User user) {
 
         Bank bank = new Bank(user, "O'Hara - Labadie Bank");
+
         Person person = new Person(1, "Arely", "Kertzmann", "-$259.71");
         Person person2 = new Person(2, "Ibrahim", "Dickens", "-$140.36");
         Person person3 = new Person(3, "Edgar", "Johns", "-$363.14");
 
         commonService.saveUser(user);
+
         bankRepository.save(bank);
         personRepository.save(person);
         personRepository.save(person2);
@@ -48,6 +50,11 @@ public class UserController {
         return "User added";
     }
 
+    @PostMapping("/addBank")
+    public String addBank(@RequestBody Bank bank) {
+        bankRepository.save(bank);
+        return "Bank-account added";
+    }
 
     //http://localhost:8081/signup?firstname=David
     @GetMapping
@@ -57,7 +64,7 @@ public class UserController {
 
     //http://localhost:8081/signup/bank?user=3
     @GetMapping("/bank")
-    public Bank getNameBankById(@RequestParam("user") User user) {
+    public List<Bank> getNameBankById(@RequestParam("user") User user) {
         System.out.println("-------------> "+user);
         return bankRepository.findByUserId(user);
     }

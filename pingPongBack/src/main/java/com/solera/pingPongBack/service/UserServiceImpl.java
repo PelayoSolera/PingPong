@@ -38,10 +38,11 @@ public class UserServiceImpl implements CommonService {
         return bankRepository.save(bank);
     }
 
-
     public List<Person> getPerson(Person person){
         return personRepository.findAll();
     }
+
+
 
 
 
