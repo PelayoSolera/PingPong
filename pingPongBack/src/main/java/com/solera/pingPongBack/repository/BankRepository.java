@@ -7,10 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface BankRepository extends JpaRepository<Bank, Integer> {
 
     @Query("SELECT u FROM Bank u WHERE u.user = :user")
-    Bank findByUserId(@Param("user") User user);
+    List<Bank> findByUserId(@Param("user") User user);
 
 }
