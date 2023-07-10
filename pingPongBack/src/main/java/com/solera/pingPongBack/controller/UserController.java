@@ -11,7 +11,10 @@ import com.solera.pingPongBack.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/signup")
@@ -35,19 +38,27 @@ public class UserController {
     public String add(@RequestBody User user) {
 
         Bank bank = new Bank(user, "O'Hara - Labadie Bank");
+
         Person person = new Person(1, "Arely", "Kertzmann", "-$259.71");
         Person person2 = new Person(2, "Ibrahim", "Dickens", "-$140.36");
         Person person3 = new Person(3, "Edgar", "Johns", "-$363.14");
 
         commonService.saveUser(user);
+
         bankRepository.save(bank);
         personRepository.save(person);
         personRepository.save(person2);
         personRepository.save(person3);
 
-        return "Student added";
+        return "User added";
     }
 
+    //http://localhost:8081/signup/addBank
+    @PostMapping("/addBank")
+    public String addBank(@RequestBody Bank bank) {
+        bankRepository.save(bank);
+        return "Bank-account added";
+    }
 
     //http://localhost:8081/signup?firstname=David
     @GetMapping
@@ -55,19 +66,24 @@ public class UserController {
         return userRepository.findByName(name);
     }
 
-    //http://localhost:8081/signup/bank?user=3
+    //http://localhost:8081/signup/bank?user=1
     @GetMapping("/bank")
-    public Bank getNameBankById(@RequestParam("user") User user) {
-        System.out.println("-------------> "+user);
-        return bankRepository.findByUserId(user);
+    public List<Map<String, String>> getNameBankById(@RequestParam("user") User user) {
+        System.out.println("-------------> " + user);
+        List<Bank> banks = bankRepository.findByUserId(user);
+        List<Map<String, String>> bankNames = new ArrayList<>();
+        for (Bank bank : banks) {
+            Map<String, String> bankMap = new HashMap<>();
+            bankMap.put("accountName", bank.getAccountName());
+            bankNames.add(bankMap);
+        }
+        return bankNames;
     }
 
+    //http://localhost:8081/signup/personal
     @GetMapping("/personal")
     public List<Person> getAllPerson(Person person) {
         return personRepository.findAll();
     }
-
-
-
 
 }

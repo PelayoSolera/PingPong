@@ -17,6 +17,7 @@ public class Bank {
         this.accountName = accountName;
     }
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int accountId;
 
@@ -24,7 +25,6 @@ public class Bank {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Id
     @Column(name = "account_name")
     private String accountName;
 
