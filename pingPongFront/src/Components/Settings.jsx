@@ -42,7 +42,7 @@ function Settings() {
     const [userInfo, setUserInfo] = useState()
 
     useEffect(()=>{
-        axios.get('http://localhost:8081/signup/bank?user=1')
+        axios.get('http://10.33.147.9:8081/signup/bank?user=1')
         .then((response) => {
             setUserInfo(response.data)
         })
