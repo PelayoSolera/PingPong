@@ -11,7 +11,10 @@ import com.solera.pingPongBack.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/signup")
@@ -50,6 +53,7 @@ public class UserController {
         return "User added";
     }
 
+    //http://localhost:8081/signup/addBank
     @PostMapping("/addBank")
     public String addBank(@RequestBody Bank bank) {
         bankRepository.save(bank);
@@ -62,19 +66,24 @@ public class UserController {
         return userRepository.findByName(name);
     }
 
-    //http://localhost:8081/signup/bank?user=3
+    //http://localhost:8081/signup/bank?user=1
     @GetMapping("/bank")
-    public List<Bank> getNameBankById(@RequestParam("user") User user) {
-        System.out.println("-------------> "+user);
-        return bankRepository.findByUserId(user);
+    public List<Map<String, String>> getNameBankById(@RequestParam("user") User user) {
+        System.out.println("-------------> " + user);
+        List<Bank> banks = bankRepository.findByUserId(user);
+        List<Map<String, String>> bankNames = new ArrayList<>();
+        for (Bank bank : banks) {
+            Map<String, String> bankMap = new HashMap<>();
+            bankMap.put("accountName", bank.getAccountName());
+            bankNames.add(bankMap);
+        }
+        return bankNames;
     }
 
+    //http://localhost:8081/signup/personal
     @GetMapping("/personal")
     public List<Person> getAllPerson(Person person) {
         return personRepository.findAll();
     }
-
-
-
 
 }
