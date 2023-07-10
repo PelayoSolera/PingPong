@@ -24,6 +24,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import axios from 'axios';
 import Link from '@mui/material/Link';
 import { height } from '@mui/system';
+import AppBarLoc from './AppBar';
 
 
 
@@ -43,26 +44,7 @@ function Personal() {
   return (
 <div>
         <div>
-    <Box sx={{ flexGrow: 1, marginLeft: 28, alignItems: "center", justifyContent: "center", alignContent: "center",  }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <LocalAtmIcon sx={{marginLeft: "35rem"}}/> Real World App
-          </Typography>
-          <Button sx={{backgroundColor: "green"}} color="inherit">$ NEW</Button>
-          <NotificationsIcon/>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <AppBarLoc></AppBarLoc>
         </div>
         <div>
         <StyledDrawer variant="permanent" anchor="left">

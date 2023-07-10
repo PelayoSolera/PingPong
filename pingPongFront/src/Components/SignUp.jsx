@@ -25,10 +25,15 @@ function SignUp() {
     e.preventDefault();
     if(email == "solera@solera.com" && password == "bootcamp2") {
     const requestBody = { firstname, lastname, email, password, phone };
-      axios.post("http://localhost:8081/signup/add", requestBody)
+      axios.post("http://10.33.147.9:8081/signup/add", requestBody)
       .then((response) => {
-        console.log(response)
-        navigate("/bankaccounts")
+        console.log("post de signup: ", response.data)
+        axios.get(`http://10.33.147.9:8081/signup?firstname=${requestBody.firstname}`)
+        .then((response) => {
+          console.log("response de respnose: " + response)
+          navigate("/bankaccounts",{ state: {userResponse: response.data}})
+        })
+       
       })
       .catch((error) => {
         console.error("error.response: ", (error.response))

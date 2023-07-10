@@ -23,6 +23,8 @@ import { Paper, TextField } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import axios from 'axios';
 import Link from '@mui/material/Link';
+import { useLocation } from 'react-router-dom';
+import AppBarLoc from './AppBar';
 
 const drawerWidth = 240;
 
@@ -38,52 +40,46 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 function BankAccounts() {
 
     const [userInfo, setUserInfo] = useState()
+    const location = useLocation()
+    console.log("location state: ", location.state)
+    const userId = location.state.userResponse.id
+    const [bankAccountsArr, setBankAccountsArr] = useState()
 
     useEffect(()=>{
-        axios.get('http://localhost:8081/signup/bank?user=1')
+      console.log("UserID es: " + userId)
+      
+        axios.get(`http://10.33.147.9:8081/signup/bank?user=${userId}`)
         .then((response) => {
-            setUserInfo(response.data)
+          console.log("objeto que vuerve: " + JSON.stringify(response.data))
+            setUserInfo(location.state.userResponse)
+            setBankAccountsArr(response.data)
+          
         })
         .catch((error) => {
           console.error("error.response: ", (error.response))
-        }).finally(console.log(userInfo))  
+        })
+        //.finally(console.log(userInfo))  
     },[])
 
+  
+    //console.log("Adri asks: " + userInfo[0])
+    console.log("banksss: ", bankAccountsArr)
   return (
+    
     <div>
+            
         <div>
-    <Box sx={{ flexGrow: 1, marginLeft: 28, alignItems: "center", justifyContent: "center", alignContent: "center",  }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <LocalAtmIcon sx={{marginLeft: "35rem"}}/> Real World App
-          </Typography>
-          <Button sx={{backgroundColor: "green"}} color="inherit">$ NEW</Button>
-          <NotificationsIcon/>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    
+    <AppBarLoc></AppBarLoc>
         </div>
         <div>
         <StyledDrawer variant="permanent" anchor="left">
             <div>
 
-                {userInfo ? (<div><p><p>{userInfo.user.firstname}{userInfo.user.lastname}</p>
-                <p>{userInfo.user.email}</p></p></div>) : (<div><p>Edgar J</p><p>@_KathatrinaBernier</p></div>)}
+                {userInfo ? (<div><p><p>{userInfo.firstname} {userInfo.lastname}</p>
+                <p>{userInfo.email}</p></p></div>) : (<div><p>Edgar J</p><p>@_KathatrinaBernier</p></div>)}
 
-                {/*userInfo 
-                ? <p>{userInfo.data.user.firstname}{userInfo.data.user.lastname}</p>
-                <p>{userInfo.data.user.email}</p> : */}
-                 
+                
                 <p><b>$ 1,681</b><br/><span>Account Balance</span></p>
             </div>
       <List>
@@ -131,8 +127,10 @@ function BankAccounts() {
     <Paper>
         <h4>Bank Accounts</h4>
         <div>
-        {userInfo 
-        ? (<p>{userInfo.accountName}</p>) : (<p>O'Hara - Labadie Bank</p>)}
+        {bankAccountsArr
+        ?(bankAccountsArr.map((bankAccount, index) => {
+          return <p key={index}>{bankAccount.accountName}</p>
+        })) : (<p>O'Hara - Labadie Bank</p>)} 
             
         </div>
         <div>
