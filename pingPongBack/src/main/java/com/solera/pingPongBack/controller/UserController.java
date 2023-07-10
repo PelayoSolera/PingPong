@@ -45,7 +45,7 @@ public class UserController {
         personRepository.save(person2);
         personRepository.save(person3);
 
-        return "Student added";
+        return "User added";
     }
 
 
