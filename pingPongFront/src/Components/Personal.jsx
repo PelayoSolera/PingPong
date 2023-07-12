@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import { Paper, TextField } from "@mui/material";
 import AppBarLoc from "./AppBar";
-import { UserContext } from "../../Component/UserContext";
+import { UserContext } from "../../Context/UserContext";
 import Sidebar from "./Sidebar";
 
 const drawerWidth = 240;
@@ -20,7 +20,8 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 }));
 
 function Personal() {
-  const { user } = useContext(UserContext);
+  const { userInfo } = useContext(UserContext);
+  
   return (
     <div>
       <div>

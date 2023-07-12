@@ -4,7 +4,7 @@ import App from './App.jsx'
 
 import './index.css'
 
-import { UserContextProvider } from '../Component/UserContext.jsx';
+import { UserContextProvider } from '../Context/UserContext.jsx';
 
 
 

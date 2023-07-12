@@ -7,7 +7,7 @@ import { Paper } from "@mui/material";
 import axios from "axios";
 import AppBarLoc from "./AppBar";
 import Sidebar from "./Sidebar";
-import { UserContext } from "../../Component/UserContext";
+import { UserContext } from "../../Context/UserContext";
 
 const drawerWidth = 240;
 
@@ -22,7 +22,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 
 function BankAccounts() {
   const [bankAccountsArr, setBankAccountsArr] = useState();
-  const { user: userInfo } = useContext(UserContext);
+  const { userInfo } = useContext(UserContext);
   console.log("no nos gusta tu null", userInfo);
   const userId = userInfo?.id;
 

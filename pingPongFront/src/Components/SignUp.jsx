@@ -3,12 +3,12 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios"
 import { useNavigate } from 'react-router';
-import { UserContext} from '../../Component/UserContext';
+import { UserContext} from '../../Context/UserContext';
 
 
 function SignUp() {
 
-  const {setUser} = useContext(UserContext)
+  const {setUserInfo} = useContext(UserContext)
 
   const [firstname, setFirstname] = useState();
   const [lastname, setLastname] = useState();
@@ -34,7 +34,7 @@ function SignUp() {
       .then((response) => {
         axios.get(`http://localhost:8081/signup?firstname=${requestBody.firstname}`)
         .then((response) => {
-          setUser(response.data)
+          setUserInfo(response.data)
           navigate("/bankaccounts")
         })
        
