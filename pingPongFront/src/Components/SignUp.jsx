@@ -35,17 +35,13 @@ function SignUp() {
         axios.get(`http://localhost:8081/signup?firstname=${requestBody.firstname}`)
         .then((response) => {
           setUser(response.data)
-        
-          navigate("/bankaccounts",{ state: {userResponse: response.data}})
+          navigate("/bankaccounts")
         })
        
       })
       .catch((error) => {
         console.error("error.response: ", (error.response))
       })  
-/*      .finally(
-        navigate("/bankaccounts")
-        )*/
       }
       }
 

@@ -44,7 +44,7 @@ function BankAccounts() {
     const [bankAccountsArr, setBankAccountsArr] = useState()
     const {user: userInfo} = useContext(UserContext)
     console.log("no nos gusta tu null", userInfo)
-    const userId = userInfo.id
+    const userId = userInfo?.id
 
     useEffect(()=>{
       //10.33.147.9>8081
