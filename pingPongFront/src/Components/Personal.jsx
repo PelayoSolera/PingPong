@@ -39,15 +39,9 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-//const location = useLocation()
-  //  console.log("location state at personal: ", location.state)
-    //const userId = location.state.userResponse.id
-
-
 function Personal() {
 
-  const ctx = useContext(UserContext)
-  console.log(ctx)
+  const {user} = useContext(UserContext)
   return (
 <div>
         <div>

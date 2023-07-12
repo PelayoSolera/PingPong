@@ -32,11 +32,8 @@ function SignUp() {
     const requestBody = { firstname, lastname, email, password, phone };
       axios.post("http://localhost:8081/signup/add", requestBody)
       .then((response) => {
-        console.log("post de signup: ", response.data)
         axios.get(`http://localhost:8081/signup?firstname=${requestBody.firstname}`)
         .then((response) => {
-          console.log("response de respnose: ", response.data)
-          console.log("setUSer", setUser)
           setUser(response.data)
         
           navigate("/bankaccounts",{ state: {userResponse: response.data}})

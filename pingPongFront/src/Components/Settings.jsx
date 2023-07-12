@@ -34,8 +34,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 function Settings() {
 
     const [userInfo, setUserInfo] = useState()
-    const location = useLocation()
-    console.log("location state at settings: ", location.state)
+    //TODO: Use Context!!!
 
     useEffect(()=>{
       //10.33.147.9>8081
@@ -45,7 +44,7 @@ function Settings() {
         })
         .catch((error) => {
           console.error("error.response: ", (error.response))
-        }).finally(console.log(userInfo))  
+        })
     },[])
 
   return (

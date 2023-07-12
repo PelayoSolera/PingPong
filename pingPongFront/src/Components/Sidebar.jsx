@@ -12,7 +12,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 
-function Sidebar({userData, children}) {
+function Sidebar() {
 
     //const navigate = useNavigate()
   return (
@@ -28,7 +28,7 @@ function Sidebar({userData, children}) {
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
-          <Link to="/personal" state={userData}
+          <Link to="/personal"
           >
           <ListItemText primary="My Account" />
           </Link>
@@ -37,7 +37,7 @@ function Sidebar({userData, children}) {
           <ListItemIcon>
             <AccountBalanceIcon />
           </ListItemIcon>
-          <Link to="/bankaccounts" state={userData}>
+          <Link to="/bankaccounts">
           <ListItemText primary="Bank Accounts" />
           </Link>
         </ListItem>
@@ -46,7 +46,7 @@ function Sidebar({userData, children}) {
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon> 
-          <Link to="/user/settings" state={userData}>
+          <Link to="/user/settings">
           <ListItemText primary="Settings" />
           </Link>
         </ListItem>
@@ -57,7 +57,6 @@ function Sidebar({userData, children}) {
           <ListItemText primary="Logout" />
         </ListItem>
       </List>
-      {children}
     </div>
   )
 }

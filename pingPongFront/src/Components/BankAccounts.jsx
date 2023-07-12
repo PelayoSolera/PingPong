@@ -41,16 +41,12 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 
 function BankAccounts() {
 
-    //const [userInfo, setUserInfo] = useState()
-    //const location = useLocation()
-    //console.log("location state: ", location.state)
     const [bankAccountsArr, setBankAccountsArr] = useState()
     const {user: userInfo} = useContext(UserContext)
-    console.log(userInfo)
+    console.log("no nos gusta tu null", userInfo)
     const userId = userInfo.id
 
     useEffect(()=>{
-      console.log("UserID es: " + userId)
       //10.33.147.9>8081
         axios.get(`http://localhost:8081/signup/bank?user=${userId}`)
         .then((response) => {
@@ -60,11 +56,9 @@ function BankAccounts() {
         .catch((error) => {
           console.error("error.response: ", (error.response))
         })
-        //.finally(console.log(userInfo))  
     },[])
 
   
-    //console.log("Adri asks: " + userInfo[0])
     console.log("banksss: ", bankAccountsArr)
   return (
     
@@ -84,7 +78,7 @@ function BankAccounts() {
                 
                 <p><b>$ 1,681</b><br/><span>Account Balance</span></p>
             </div>
-      <Sidebar userData={userInfo}></Sidebar>
+      <Sidebar></Sidebar>
     </StyledDrawer>
         </div>
         <div className='bankAccountBody'>
@@ -94,7 +88,7 @@ function BankAccounts() {
         {bankAccountsArr
         ?(bankAccountsArr.map((bankAccount, index) => {
           return <p key={index}>{bankAccount.accountName}</p>
-        })) : (<p>O'Hara - Labadie Bank</p>)} 
+        })) : (<p>O'Jarra - L abadia Bank</p>)} 
             
         </div>
         <div>

@@ -9,7 +9,6 @@ export const UserContextProvider = ({ children }) => {
   // Define the initial state for the user context
   const [user, setUser] = useState(null);
     function setUserFn(user) {
-        console.log("userFn",user)
         setUser(user)
     }
   // Provide the user context value to the children components
