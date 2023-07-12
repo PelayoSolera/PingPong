@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import { React, useState } from 'react'
 import './App.css'
 import SignUp from './Components/SignUp'
+
+
+
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-      <SignUp></SignUp>
-      </div>
+      <SignUp/>
     </>
   )
 }

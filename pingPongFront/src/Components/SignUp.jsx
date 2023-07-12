@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios"
 import { useNavigate } from 'react-router';
+import { UserContext} from '../../Component/UserContext';
+
 
 function SignUp() {
+
+  const {setUser} = useContext(UserContext)
 
   const [firstname, setFirstname] = useState();
   const [lastname, setLastname] = useState();
@@ -21,16 +25,20 @@ function SignUp() {
   const handleConfirmPassword = (e) => setConfirmpassword(e.target.value)
   const phone = ""
   
+  //10.33.147.9>8081
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     if(email == "solera@solera.com" && password == "bootcamp2") {
     const requestBody = { firstname, lastname, email, password, phone };
-      axios.post("http://10.33.147.9:8081/signup/add", requestBody)
+      axios.post("http://localhost:8081/signup/add", requestBody)
       .then((response) => {
         console.log("post de signup: ", response.data)
-        axios.get(`http://10.33.147.9:8081/signup?firstname=${requestBody.firstname}`)
+        axios.get(`http://localhost:8081/signup?firstname=${requestBody.firstname}`)
         .then((response) => {
-          console.log("response de respnose: " + response)
+          console.log("response de respnose: ", response.data)
+          console.log("setUSer", setUser)
+          setUser(response.data)
+        
           navigate("/bankaccounts",{ state: {userResponse: response.data}})
         })
        
@@ -59,9 +67,8 @@ function SignUp() {
                 label="First Name"
                 value={firstname}
                 onChange={handleFirstName}
-                >
-                  
-                </TextField>
+                >                  
+          </TextField>
         </div>
         <div>
           <TextField

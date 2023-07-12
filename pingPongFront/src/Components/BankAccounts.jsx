@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import  "./BankAccounts";
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import AppBar from '@mui/material/AppBar';
@@ -25,6 +25,8 @@ import axios from 'axios';
 import Link from '@mui/material/Link';
 import { useLocation } from 'react-router-dom';
 import AppBarLoc from './AppBar';
+import Sidebar from './Sidebar';
+import { UserContext } from '../../Component/UserContext';
 
 const drawerWidth = 240;
 
@@ -39,21 +41,21 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 
 function BankAccounts() {
 
-    const [userInfo, setUserInfo] = useState()
-    const location = useLocation()
-    console.log("location state: ", location.state)
-    const userId = location.state.userResponse.id
+    //const [userInfo, setUserInfo] = useState()
+    //const location = useLocation()
+    //console.log("location state: ", location.state)
     const [bankAccountsArr, setBankAccountsArr] = useState()
+    const {user: userInfo} = useContext(UserContext)
+    console.log(userInfo)
+    const userId = userInfo.id
 
     useEffect(()=>{
       console.log("UserID es: " + userId)
-      
-        axios.get(`http://10.33.147.9:8081/signup/bank?user=${userId}`)
+      //10.33.147.9>8081
+        axios.get(`http://localhost:8081/signup/bank?user=${userId}`)
         .then((response) => {
           console.log("objeto que vuerve: " + JSON.stringify(response.data))
-            setUserInfo(location.state.userResponse)
             setBankAccountsArr(response.data)
-          
         })
         .catch((error) => {
           console.error("error.response: ", (error.response))
@@ -82,45 +84,7 @@ function BankAccounts() {
                 
                 <p><b>$ 1,681</b><br/><span>Account Balance</span></p>
             </div>
-      <List>
-        <ListItem>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <PersonIcon />
-          </ListItemIcon>
-          <Link href="/personal">
-          <ListItemText primary="My Account" />
-          </Link>
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <AccountBalanceIcon />
-          </ListItemIcon>
-          <Link href="/bankaccounts">
-          <ListItemText primary="Bank Accounts" />
-          </Link>
-        </ListItem>
-        <ListItem>
-           
-          <ListItemIcon>
-            <SettingsIcon />
-          </ListItemIcon> 
-          <Link href="/user/settings">
-          <ListItemText primary="Settings" />
-          </Link>
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <ExitToAppIcon />
-          </ListItemIcon>
-          <ListItemText primary="Logout" />
-        </ListItem>
-      </List>
+      <Sidebar userData={userInfo}></Sidebar>
     </StyledDrawer>
         </div>
         <div className='bankAccountBody'>

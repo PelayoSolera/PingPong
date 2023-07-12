@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import  "./BankAccounts";
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import AppBar from '@mui/material/AppBar';
@@ -25,7 +25,7 @@ import axios from 'axios';
 import Link from '@mui/material/Link';
 import { height } from '@mui/system';
 import AppBarLoc from './AppBar';
-
+import { UserContext } from '../../Component/UserContext';
 
 
 const drawerWidth = 240;
@@ -39,8 +39,15 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
+//const location = useLocation()
+  //  console.log("location state at personal: ", location.state)
+    //const userId = location.state.userResponse.id
+
 
 function Personal() {
+
+  const ctx = useContext(UserContext)
+  console.log(ctx)
   return (
 <div>
         <div>

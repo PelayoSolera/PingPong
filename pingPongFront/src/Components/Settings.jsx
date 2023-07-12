@@ -34,9 +34,12 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 function Settings() {
 
     const [userInfo, setUserInfo] = useState()
+    const location = useLocation()
+    console.log("location state at settings: ", location.state)
 
     useEffect(()=>{
-        axios.get('http://10.33.147.9:8081/signup/bank?user=1')
+      //10.33.147.9>8081
+        axios.get('http://localhost:8081/signup/bank?user=1')
         .then((response) => {
             setUserInfo(response.data)
         })
