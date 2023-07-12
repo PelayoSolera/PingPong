@@ -8,6 +8,7 @@ import axios from "axios";
 import AppBarLoc from "./AppBar";
 import Sidebar from "./Sidebar";
 import { UserContext } from "../../Context/UserContext";
+import UserDetails from "./UserDetails";
 
 const drawerWidth = 240;
 
@@ -47,29 +48,7 @@ function BankAccounts() {
       </div>
       <div>
         <StyledDrawer variant="permanent" anchor="left">
-          <div>
-            {userInfo ? (
-              <div>
-                <p>
-                  <p>
-                    {userInfo.firstname} {userInfo.lastname}
-                  </p>
-                  <p>{userInfo.email}</p>
-                </p>
-              </div>
-            ) : (
-              <div>
-                <p>Edgar J</p>
-                <p>@_KathatrinaBernier</p>
-              </div>
-            )}
-
-            <p>
-              <b>$ 1,681</b>
-              <br />
-              <span>Account Balance</span>
-            </p>
-          </div>
+          <UserDetails userInfo={userInfo}/>
           <Sidebar></Sidebar>
         </StyledDrawer>
       </div>

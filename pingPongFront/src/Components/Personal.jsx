@@ -6,6 +6,7 @@ import Drawer from "@mui/material/Drawer";
 import { Paper, TextField } from "@mui/material";
 import AppBarLoc from "./AppBar";
 import { UserContext } from "../../Context/UserContext";
+import UserDetails from "./UserDetails";
 import Sidebar from "./Sidebar";
 
 const drawerWidth = 240;
@@ -21,26 +22,14 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 
 function Personal() {
   const { userInfo } = useContext(UserContext);
-  
+
   return (
     <div>
       <div>
         <AppBarLoc></AppBarLoc>
       </div>
-      <div>
-        <StyledDrawer variant="permanent" anchor="left">
-          <div>
-            <p>Edgar J</p>
-            <p>@Katharina_Bernier</p>
-            <p>
-              $ 1,681
-              <br />
-              <span>Account Balance</span>
-            </p>
-          </div>
-          <Sidebar></Sidebar>
-        </StyledDrawer>
-      </div>
+      <UserDetails userInfo={userInfo} />
+      <Sidebar/>
       <div className="bankAccountBody">
         <Paper sx={{ margin: "5rem, 10rem", height: "700px" }}>
           <Button
