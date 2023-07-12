@@ -48,8 +48,8 @@ function BankAccounts() {
       </div>
       <div>
         <StyledDrawer variant="permanent" anchor="left">
-          <UserDetails userInfo={userInfo}/>
-          <Sidebar></Sidebar>
+          <UserDetails userInfo={userInfo} />
+          <Sidebar />
         </StyledDrawer>
       </div>
       <div className="bankAccountBody">

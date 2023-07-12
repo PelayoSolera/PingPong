@@ -28,8 +28,10 @@ function Personal() {
       <div>
         <AppBarLoc></AppBarLoc>
       </div>
-      <UserDetails userInfo={userInfo} />
-      <Sidebar/>
+      <StyledDrawer variant="permanent" anchor="left">
+        <UserDetails userInfo={userInfo} />
+        <Sidebar />
+      </StyledDrawer>
       <div className="bankAccountBody">
         <Paper sx={{ margin: "5rem, 10rem", height: "700px" }}>
           <Button
