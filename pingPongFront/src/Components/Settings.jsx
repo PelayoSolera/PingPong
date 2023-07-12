@@ -4,19 +4,10 @@ import  "./BankAccounts";
 import Button from '@mui/material/Button';
 import { styled } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Paper, TextField } from '@mui/material';
-import SettingsIcon from '@mui/icons-material/Settings';
 import axios from 'axios';
-import Link from '@mui/material/Link';
 import AppBarLoc from './AppBar';
+import Sidebar from './Sidebar';
 
 const drawerWidth = 240;
 
@@ -61,45 +52,7 @@ function Settings() {
                 <p>{userInfo.user.email}</p></p></div>) : (<div><p>Edgar J</p><p>@_KathatrinaBernier</p></div>)}
                 <p>$ 1,681<br/><span>Account Balance</span></p>
             </div>
-      <List>
-        <ListItem>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <PersonIcon />
-          </ListItemIcon>
-          <Link href="/personal">
-          <ListItemText primary="My Account" />
-          </Link>
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <AccountBalanceIcon />
-          </ListItemIcon>
-          <Link href="/bankaccounts">
-          <ListItemText primary="Bank Accounts" />
-          </Link>
-        </ListItem>
-        <ListItem>
-           
-          <ListItemIcon>
-            <SettingsIcon />
-          </ListItemIcon> 
-          <Link href="/user/settings">
-          <ListItemText primary="Settings" />
-          </Link>
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <ExitToAppIcon />
-          </ListItemIcon>
-          <ListItemText primary="Logout" />
-        </ListItem>
-      </List>
+      <Sidebar></Sidebar>
     </StyledDrawer>
         </div>
         <div className='bankAccountBody'>
