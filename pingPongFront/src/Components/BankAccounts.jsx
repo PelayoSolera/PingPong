@@ -29,9 +29,8 @@ function BankAccounts() {
   useEffect(() => {
     //10.33.147.9:8081
     axios
-      .get(`http://localhost:8081/signup/bank?user=${userId}`)
+      .get(`http://10.33.147.9:8081/signup/bank?user=${userId}`)
       .then((response) => {
-        //console.log("objeto que vuerve: " + JSON.stringify(response.data));
         setBankAccountsArr(response.data);
       })
       .catch((error) => {
@@ -39,7 +38,6 @@ function BankAccounts() {
       });
   }, []);
 
-  
   return (
     <div>
       <div>
