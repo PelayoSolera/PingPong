@@ -8,6 +8,7 @@ import com.solera.pingPongBack.repository.BankRepository;
 import com.solera.pingPongBack.repository.PersonRepository;
 import com.solera.pingPongBack.repository.UserRepository;
 import com.solera.pingPongBack.service.CommonService;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,9 +40,9 @@ public class UserController {
 
         Bank bank = new Bank(user, "O'Hara - Labadie Bank");
 
-        Person person = new Person(1, "Arely", "Kertzmann", "-$259.71");
-        Person person2 = new Person(2, "Ibrahim", "Dickens", "-$140.36");
-        Person person3 = new Person(3, "Edgar", "Johns", "-$363.14");
+        Person person = new Person(1, generarId(),"Arely", "Kertzmann", "-$259.71");
+        Person person2 = new Person(2, generarId(), "Ibrahim", "Dickens", "-$140.36");
+        Person person3 = new Person(3, generarId(), "Edgar", "Johns", "-$363.14");
 
         commonService.saveUser(user);
 
@@ -51,19 +52,6 @@ public class UserController {
         personRepository.save(person3);
 
         return "User added";
-    }
-
-    //http://localhost:8081/signup/addBank
-    @PostMapping("/addBank")
-    public String addBank(@RequestBody Bank bank) {
-        bankRepository.save(bank);
-        return "Bank-account added";
-    }
-
-    //http://localhost:8081/signup?firstname=David
-    @GetMapping
-    public User getUsersByName(@RequestParam("firstname") String name) {
-        return userRepository.findByName(name);
     }
 
     //http://localhost:8081/signup/bank?user=1
@@ -80,10 +68,17 @@ public class UserController {
         return bankNames;
     }
 
-    //http://localhost:8081/signup/personal
-    @GetMapping("/personal")
-    public List<Person> getAllPerson(Person person) {
-        return personRepository.findAll();
+    private static String generarId() {
+        String idFalso = RandomStringUtils.randomAlphanumeric(10);
+        return idFalso;
     }
+
+    //http://localhost:8081/signup?firstname=David
+    @GetMapping
+    public User getUsersByName(@RequestParam("firstname") String name) {
+        return userRepository.findByName(name);
+    }
+
+
 
 }
