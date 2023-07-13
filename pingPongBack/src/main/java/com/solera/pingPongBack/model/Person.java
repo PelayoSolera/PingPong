@@ -16,6 +16,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_person;
 
+    private String id_fake;
     private String firstname;
     private String lastname;
     private String amount;
