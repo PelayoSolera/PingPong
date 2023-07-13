@@ -1,10 +1,17 @@
 import React from 'react'
+import Avatar from '@mui/material/Avatar';
+
+
 
 function UserDetails({userInfo}) {
+  
+
+
   return (
-    <div>
+    <div className='userInfo'>
             {userInfo ? (
               <div>
+                <Avatar alt="Remy Sharp" src={`https://unavatar.io/github/${userInfo.firstname}`} />
                 <p>
                   <p>
                     {userInfo.firstname} {userInfo.lastname}
