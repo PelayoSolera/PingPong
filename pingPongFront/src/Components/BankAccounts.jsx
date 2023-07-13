@@ -64,7 +64,6 @@ function BankAccounts() {
               <p>O'Jarra - L abadia Bank</p>
             )}
           </div>
-          <div>Results from back here</div>
           <div>
             <Button sx={{ width: "10rem" }} variant="contained" type="submit">
               CREATE
