@@ -8,16 +8,12 @@ import com.solera.pingPongBack.repository.BankRepository;
 import com.solera.pingPongBack.repository.PersonRepository;
 import com.solera.pingPongBack.repository.UserRepository;
 import com.solera.pingPongBack.service.CommonService;
-import com.solera.pingPongBack.service.UserServiceImpl;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/signup")
@@ -87,9 +83,6 @@ public class UserController {
         User existingUser = userRepository.findById(id);
 
         // Actualizar los campos modificables del usuario existente
-        // existingUser.setFirstname(updatedUser.getFirstname());
-        // existingUser.setLastname(updatedUser.getLastname());
-
         existingUser.setPhone(updatedUser.getPhone());
         User savedUser = commonService.saveUser(existingUser);
 
@@ -97,6 +90,24 @@ public class UserController {
         return ResponseEntity.ok(savedUser);
     }
 
+
+    //http://10.33.147.9:8081/signup/2/delete-bankname
+    @DeleteMapping("/{user}/delete-bankname")
+    public ResponseEntity<String> updateUser(@PathVariable("user") User user, @RequestBody String deleteBank) {
+        System.out.println("-------------> " + user);
+        List<Bank> banks = bankRepository.findByUserId(user);
+
+        for (Bank bank : banks) {
+
+            String compare = String.valueOf('"' +bank.getAccountName() +'"');
+
+            if (compare.equals(deleteBank)) {
+                bankRepository.delete(bank);
+            }
+
+        }
+        return ResponseEntity.ok("Delete success");
+    }
 
 
 }
