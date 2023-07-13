@@ -24,15 +24,14 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 function BankAccounts() {
   const [bankAccountsArr, setBankAccountsArr] = useState();
   const { userInfo } = useContext(UserContext);
-  console.log("no nos gusta tu null", userInfo);
   const userId = userInfo?.id;
 
   useEffect(() => {
-    //10.33.147.9>8081
+    //10.33.147.9:8081
     axios
       .get(`http://localhost:8081/signup/bank?user=${userId}`)
       .then((response) => {
-        console.log("objeto que vuerve: " + JSON.stringify(response.data));
+        //console.log("objeto que vuerve: " + JSON.stringify(response.data));
         setBankAccountsArr(response.data);
       })
       .catch((error) => {
@@ -40,7 +39,7 @@ function BankAccounts() {
       });
   }, []);
 
-  console.log("banksss: ", bankAccountsArr);
+  
   return (
     <div>
       <div>

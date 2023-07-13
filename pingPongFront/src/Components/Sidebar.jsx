@@ -1,23 +1,26 @@
-import React from 'react'
+import React, { useContext } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import SettingsIcon from '@mui/icons-material/Settings';
-//import Link from '@mui/material/Link';
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
+import HomeIcon from "@mui/icons-material/Home";
+import PersonIcon from "@mui/icons-material/Person";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { Link } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
 
 function Sidebar() {
-
-    //const navigate = useNavigate()
+  const { userInfo, setUserInfo } = useContext(UserContext);
+  function deleteUserContext(e) {
+    e.preventDefault;
+    setUserInfo({});
+  }
+  //const navigate = useNavigate()
   return (
     <div>
-        <List>
+      <List>
         <ListItem>
           <ListItemIcon>
             <HomeIcon />
@@ -28,9 +31,8 @@ function Sidebar() {
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
-          <Link to="/personal"
-          >
-          <ListItemText primary="My Account" />
+          <Link to="/personal">
+            <ListItemText primary="My Account" />
           </Link>
         </ListItem>
         <ListItem>
@@ -38,27 +40,28 @@ function Sidebar() {
             <AccountBalanceIcon />
           </ListItemIcon>
           <Link to="/bankaccounts">
-          <ListItemText primary="Bank Accounts" />
+            <ListItemText primary="Bank Accounts" />
           </Link>
         </ListItem>
         <ListItem>
-           
           <ListItemIcon>
             <SettingsIcon />
-          </ListItemIcon> 
+          </ListItemIcon>
           <Link to="/user/settings">
-          <ListItemText primary="Settings" />
+            <ListItemText primary="Settings" />
           </Link>
         </ListItem>
         <ListItem>
           <ListItemIcon>
             <ExitToAppIcon />
           </ListItemIcon>
-          <ListItemText primary="Logout" />
+          <Link to="/signup" onClick={deleteUserContext}>
+            <ListItemText primary="Logout" />
+          </Link>
         </ListItem>
       </List>
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;
