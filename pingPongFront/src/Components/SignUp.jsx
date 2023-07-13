@@ -24,13 +24,14 @@ function SignUp() {
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value)
   const handleConfirmPassword = (e) => setConfirmpassword(e.target.value)
-  const phone = ""
+  const phone = "";
+  const balance = 1681.37
   
   //10.33.147.9:8081
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     if(email == "solera@solera.com" && password == "bootcamp2") {
-    const requestBody = { firstname, lastname, email, password, phone };
+    const requestBody = { firstname, lastname, email, password, phone, balance };
       axios.post("http://10.33.147.9:8081/signup/add", requestBody)
       .then((response) => {
         console.log(response.data)

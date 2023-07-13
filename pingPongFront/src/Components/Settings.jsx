@@ -84,7 +84,7 @@ function Settings() {
               type="text"
               name="phone"
               className="bankAccountsTextfield"
-              value={userInfo.phone ? userInfo.phone : ""}
+              value={phone}
               onChange={handlePhone}
             >
               625-316-9882
