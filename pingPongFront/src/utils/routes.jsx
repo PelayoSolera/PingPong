@@ -1,5 +1,5 @@
 
-function routes() {
+/*function routes() {
 
   const localServerURL = "localhost:8081";
 const SergiWebServicesURL = "10.33.147.9>8081";
@@ -8,7 +8,7 @@ const SergiWebServicesURL = "10.33.147.9>8081";
    * @param {string} source - The source of the URL.
    * @returns {string} - The URL.
    */
-  function switchURL(source) {
+  /*function switchURL(source) {
     // Return local server URL if source is "local"
     if (source === "local") {
       return localServerURL;
@@ -17,6 +17,6 @@ const SergiWebServicesURL = "10.33.147.9>8081";
       return SergiWebServicesURL;
     }
   }
-}
+}*/
 
 export default routes;

@@ -10,6 +10,7 @@ function SignUp() {
 
   const {setUserInfo} = useContext(UserContext)
 
+
   const [firstname, setFirstname] = useState();
   const [lastname, setLastname] = useState();
   const [email, setEmail] = useState();
@@ -25,19 +26,16 @@ function SignUp() {
   const handleConfirmPassword = (e) => setConfirmpassword(e.target.value)
   const phone = ""
   
-  //10.33.147.9>8081
+  //10.33.147.9:8081
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     if(email == "solera@solera.com" && password == "bootcamp2") {
     const requestBody = { firstname, lastname, email, password, phone };
-      axios.post("http://localhost:8081/signup/add", requestBody)
+      axios.post("http://10.33.147.9:8081/signup/add", requestBody)
       .then((response) => {
-        axios.get(`http://localhost:8081/signup?firstname=${requestBody.firstname}`)
-        .then((response) => {
-          setUserInfo(response.data)
-          navigate("/bankaccounts")
-        })
-       
+        console.log(response.data)
+        setUserInfo(response.data)
+        navigate("/bankaccounts")       
       })
       .catch((error) => {
         console.error("error.response: ", (error.response))
