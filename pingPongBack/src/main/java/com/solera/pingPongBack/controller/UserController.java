@@ -8,8 +8,10 @@ import com.solera.pingPongBack.repository.BankRepository;
 import com.solera.pingPongBack.repository.PersonRepository;
 import com.solera.pingPongBack.repository.UserRepository;
 import com.solera.pingPongBack.service.CommonService;
+import com.solera.pingPongBack.service.UserServiceImpl;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/add")
-    public String add(@RequestBody User user) {
+    public ResponseEntity<User> add(@RequestBody User user) {
 
         Bank bank = new Bank(user, "O'Hara - Labadie Bank");
 
@@ -51,7 +53,7 @@ public class UserController {
         personRepository.save(person2);
         personRepository.save(person3);
 
-        return "User added";
+        return ResponseEntity.ok(user);
     }
 
     //http://localhost:8081/signup/bank?user=1
@@ -77,6 +79,22 @@ public class UserController {
     @GetMapping
     public User getUsersByName(@RequestParam("firstname") String name) {
         return userRepository.findByName(name);
+    }
+
+    //http://10.33.147.9:8081/signup/2/phone-number
+    @PutMapping("/{id}/phone-number")
+    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User updatedUser) {
+        User existingUser = userRepository.findById(id);
+
+        // Actualizar los campos modificables del usuario existente
+        // existingUser.setFirstname(updatedUser.getFirstname());
+        // existingUser.setLastname(updatedUser.getLastname());
+
+        existingUser.setPhone(updatedUser.getPhone());
+        User savedUser = commonService.saveUser(existingUser);
+
+        System.out.println("----------> User: " + savedUser);
+        return ResponseEntity.ok(savedUser);
     }
 
 
