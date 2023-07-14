@@ -10,12 +10,10 @@ import com.solera.pingPongBack.repository.UserRepository;
 import com.solera.pingPongBack.service.CommonService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/signup")
@@ -36,7 +34,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/add")
-    public String add(@RequestBody User user) {
+    public ResponseEntity<User> add(@RequestBody User user) {
 
         Bank bank = new Bank(user, "O'Hara - Labadie Bank");
 
@@ -51,7 +49,7 @@ public class UserController {
         personRepository.save(person2);
         personRepository.save(person3);
 
-        return "User added";
+        return ResponseEntity.ok(user);
     }
 
     //http://localhost:8081/signup/bank?user=1
@@ -79,6 +77,37 @@ public class UserController {
         return userRepository.findByName(name);
     }
 
+    //http://10.33.147.9:8081/signup/2/phone-number
+    @PutMapping("/{id}/phone-number")
+    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User updatedUser) {
+        User existingUser = userRepository.findById(id);
+
+        // Actualizar los campos modificables del usuario existente
+        existingUser.setPhone(updatedUser.getPhone());
+        User savedUser = commonService.saveUser(existingUser);
+
+        System.out.println("----------> User: " + savedUser);
+        return ResponseEntity.ok(savedUser);
+    }
+
+
+    //http://10.33.147.9:8081/signup/2/delete-bankname
+    @DeleteMapping("/{user}/delete-bankname")
+    public ResponseEntity<String> updateUser(@PathVariable("user") User user, @RequestBody String deleteBank) {
+        System.out.println("-------------> " + user);
+        List<Bank> banks = bankRepository.findByUserId(user);
+
+        for (Bank bank : banks) {
+
+            String compare = String.valueOf('"' +bank.getAccountName() +'"');
+
+            if (compare.equals(deleteBank)) {
+                bankRepository.delete(bank);
+            }
+
+        }
+        return ResponseEntity.ok("Delete success");
+    }
 
 
 }

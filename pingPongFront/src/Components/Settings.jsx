@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./BankAccounts";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
@@ -8,6 +8,7 @@ import AppBarLoc from "./AppBar";
 import Sidebar from "./Sidebar";
 import UserDetails from "./UserDetails";
 import { UserContext } from "../../Context/UserContext";
+import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -21,7 +22,30 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 }));
 
 function Settings() {
-  const { userInfo } = useContext(UserContext);
+  const [phone, setPhone] = useState();
+  const { userInfo, setUserInfo } = useContext(UserContext);
+
+  const handlePhone = (e) => setPhone(e.target.value);
+
+  const updatedUserInfo = { ...userInfo, phone };
+  const handlePhoneSubmit = (e) => {
+    e.preventDefault();
+    setUserInfo(updatedUserInfo);
+    const requestBody = { phone };
+    console.log("phone", requestBody);
+    console.log("userinfooo", userInfo.id);
+    axios
+      .put(
+        `http://10.33.147.9:8081/signup/${userInfo.id}/phone-number`,
+        requestBody
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error("error.response: ", error.response);
+      });
+  };
 
   return (
     <div>
@@ -37,33 +61,45 @@ function Settings() {
       <div className="bankAccountBody">
         <Paper>
           <h4>User Settings</h4>
-          <div className="bankAccountsForm">
-            <TextField
-              sx={{ padding: "0.5rem" }}
-              className="bankAccountsTextfield"
-              value={userInfo ? userInfo.firstname : "Edgar"}
-            ></TextField>
-            <TextField
-              sx={{ padding: "0.5rem" }}
-              className="bankAccountsTextfield"
-              value={userInfo ? userInfo.lastname : "Johns"}
-            ></TextField>
-            <TextField
-              sx={{ padding: "0.5rem" }}
-              className="bankAccountsTextfield"
-              value={userInfo ? userInfo.email : "Norene39@yahoo.com"}
-            ></TextField>
-            <TextField
-              sx={{ padding: "0.5rem" }}
-              className="bankAccountsTextfield"
-            >
-              625-316-9882
-            </TextField>
+          <form onSubmit={handlePhoneSubmit}>
+            <div className="bankAccountsForm">
+              <TextField
+                sx={{ padding: "0.5rem" }}
+                className="bankAccountsTextfield"
+                type="text"
+                disabled={true}
+                value={userInfo ? userInfo.firstname : "Edgar"}
+              ></TextField>
+              <TextField
+                sx={{ padding: "0.5rem" }}
+                className="bankAccountsTextfield"
+                type="text"
+                disabled={true}
+                value={userInfo ? userInfo.lastname : "Johns"}
+              ></TextField>
+              <TextField
+                sx={{ padding: "0.5rem" }}
+                className="bankAccountsTextfield"
+                type="email"
+                disabled={true}
+                value={userInfo ? userInfo.email : "Norene39@yahoo.com"}
+              ></TextField>
+              <TextField
+                sx={{ padding: "0.5rem" }}
+                type="text"
+                name="phone"
+                className="bankAccountsTextfield"
+                value={phone}
+                onChange={handlePhone}
+              >
+                625-316-9882
+              </TextField>
 
-            <Button sx={{ width: "10rem" }} variant="contained" type="submit">
-              SAVE
-            </Button>
-          </div>
+              <Button sx={{ width: "10rem" }} variant="contained" type="submit">
+                SAVE
+              </Button>
+            </div>
+          </form>
         </Paper>
       </div>
     </div>

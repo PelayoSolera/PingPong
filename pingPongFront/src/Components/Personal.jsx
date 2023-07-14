@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./BankAccounts";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
@@ -8,6 +8,9 @@ import AppBarLoc from "./AppBar";
 import { UserContext } from "../../Context/UserContext";
 import UserDetails from "./UserDetails";
 import Sidebar from "./Sidebar";
+import axios from "axios";
+import Avatar from "@mui/material/Avatar";
+import PersonalPpl from "./PersonalPpl";
 
 const drawerWidth = 240;
 
@@ -20,36 +23,66 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-function Personal() {
-  const { userInfo } = useContext(UserContext);
+//10.33.147.9:8081
+//localhost:8081
 
-  return (
-    <div>
+const getPersonalPpl = async () => {
+  const { data } = await axios.get("http://10.33.147.9:8081/signup/personal");
+  return data;
+};
+
+function Personal() {
+  const [isLoading, setIsLoading] = useState(true);
+  const { userInfo } = useContext(UserContext);
+  const [personalPpl, setPersonalPpl] = useState([]);
+
+  useEffect(() => {
+    getPersonalPpl().then((response) => {
+      setPersonalPpl([...response]);
+      setIsLoading(false);
+    });
+  }, []);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  } else {
+    return (
       <div>
-        <AppBarLoc></AppBarLoc>
+        <div>
+          <AppBarLoc></AppBarLoc>
+        </div>
+        <StyledDrawer variant="permanent" anchor="left">
+          <UserDetails userInfo={userInfo} />
+          <Sidebar />
+        </StyledDrawer>
+        <div className="personalBody">
+          <Paper sx={{ margin: "10rem, 10rem", height: "700px" }}>
+            <Button
+              sx={{ width: "10rem", borderRadius: "25px", margin: "2rem" }}
+              variant="outlined"
+            >
+              Date: ALL
+            </Button>
+            <Button
+              sx={{ width: "15rem", borderRadius: "25px" }}
+              variant="outlined"
+            >
+              Amount: $0 - $1000
+            </Button>
+            <h5 style={{ marginLeft: "2rem" }}>Personal</h5>
+
+            {personalPpl ? (
+              personalPpl.map((person) => (
+                <PersonalPpl person={person} userInfo={userInfo} />
+              ))
+            ) : (
+              <p>No Transactions</p>
+            )}
+          </Paper>
+        </div>
       </div>
-      <StyledDrawer variant="permanent" anchor="left">
-        <UserDetails userInfo={userInfo} />
-        <Sidebar />
-      </StyledDrawer>
-      <div className="bankAccountBody">
-        <Paper sx={{ margin: "5rem, 10rem", height: "700px" }}>
-          <Button
-            sx={{ width: "10rem", borderRadius: "25px" }}
-            variant="outlined"
-          >
-            Date: ALL
-          </Button>
-          <Button
-            sx={{ width: "15rem", borderRadius: "25px" }}
-            variant="outlined"
-          >
-            Amount: $0 - $1000
-          </Button>
-        </Paper>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Personal;

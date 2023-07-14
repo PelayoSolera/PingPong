@@ -14,11 +14,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
     private String firstname;
     private String lastname;
     private String email;
     private String password;
     private String phone;
+    private int balance;
 
 }
