@@ -42,6 +42,7 @@ public class UserController {
         Person person2 = new Person(2, generarId(), "Ibrahim", "Dickens", "-$140.36");
         Person person3 = new Person(3, generarId(), "Edgar", "Johns", "-$363.14");
 
+        user.setFake_id(generarId());
         commonService.saveUser(user);
 
         bankRepository.save(bank);
@@ -49,7 +50,8 @@ public class UserController {
         personRepository.save(person2);
         personRepository.save(person3);
 
-        return ResponseEntity.ok(user);
+
+        return ResponseEntity.ok(user) ;
     }
 
     //http://localhost:8081/signup/bank?user=1
