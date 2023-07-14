@@ -17,8 +17,12 @@ public class User {
     private String firstname;
     private String lastname;
     private String email;
+
+    @JsonIgnore
     private String password;
+
     private String phone;
     private int balance;
+    private String fake_id;
 
 }
