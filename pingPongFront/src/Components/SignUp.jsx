@@ -36,6 +36,8 @@ function SignUp() {
         phone,
         balance,
       };
+      //10.33.147.9:8081
+      //localhost:8081
       axios
         .post("http://10.33.147.9:8081/signup/add", requestBody)
         .then((response) => {
@@ -52,8 +54,8 @@ function SignUp() {
     <div>
       <h1 className="app-logo">Real World App</h1>
       <h2 className="st-tittle">Sign Up</h2>
-      <form onSubmit={handleSignupSubmit}>
-        <div>
+      <form className="signupForm" onSubmit={handleSignupSubmit}>
+        <div className="signInput">
           <TextField
             required
             id="outlined-basic"
@@ -65,7 +67,7 @@ function SignUp() {
             onChange={handleFirstName}
           ></TextField>
         </div>
-        <div>
+        <div className="signInput">
           <TextField
             required
             id="outlined-basic"
@@ -77,7 +79,7 @@ function SignUp() {
             onChange={handleLastName}
           ></TextField>
         </div>
-        <div>
+        <div className="signInput">
           <TextField
             required
             id="outlined-basic"
@@ -89,7 +91,7 @@ function SignUp() {
             onChange={handleEmail}
           ></TextField>
         </div>
-        <div>
+        <div className="signInput">
           <TextField
             required
             id="outlined-basic"
@@ -101,7 +103,7 @@ function SignUp() {
             onChange={handlePassword}
           ></TextField>
         </div>
-        <div>
+        <div className="signInput">
           <TextField
             required
             id="outlined-basic"
@@ -114,7 +116,7 @@ function SignUp() {
           ></TextField>
         </div>
 
-        <Button sx={{ width: "14rem" }} variant="contained" type="submit">
+        <Button sx={{ width: "14rem", marginTop: "0.5rem", height: "3rem" }} variant="contained" type="submit">
           Sign Up
         </Button>
       </form>

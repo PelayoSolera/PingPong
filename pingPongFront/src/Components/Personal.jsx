@@ -10,6 +10,7 @@ import UserDetails from "./UserDetails";
 import Sidebar from "./Sidebar";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
+import PersonalPpl from "./PersonalPpl";
 
 const drawerWidth = 240;
 
@@ -21,6 +22,9 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
     boxSizing: "border-box",
   },
 }));
+
+//10.33.147.9:8081
+//localhost:8081
 
 const getPersonalPpl = async () => {
   const { data } = await axios.get("http://10.33.147.9:8081/signup/personal");
@@ -66,10 +70,17 @@ function Personal() {
               Amount: $0 - $1000
             </Button>
             <h5 style={{ marginLeft: "2rem" }}>Personal</h5>
-            <div>
+
+            {personalPpl ? (
+              personalPpl.map((person) => <PersonalPpl person={person} userInfo={userInfo}/>)
+            ) : (
+              <p>not really</p>
+            )}
+
+            {/* <div>
               {personalPpl ? (
                 <div className="personalCard">
-                  <div classname="personalCardwitImg">
+                  <div className="personalCardwitImg">
                     <Avatar
                       alt="Remy Sharp"
                       src={`https://unavatar.io/github/${personalPpl[0].firstname}`}
@@ -94,7 +105,7 @@ function Personal() {
             <div>
               {personalPpl ? (
                 <div className="personalCard">
-                  <div classname="personalCardwitImg">
+                  <div className="personalCardwitImg">
                     <Avatar
                       alt="Remy Sharp"
                       src={`https://unavatar.io/github/${personalPpl[1].firstname}`}
@@ -119,7 +130,7 @@ function Personal() {
             <div>
               {personalPpl ? (
                 <div className="personalCard">
-                  <div classname="personalCardwitImg">
+                  <div className="personalCardwitImg">
                     <Avatar
                       alt="Remy Sharp"
                       src={`https://unavatar.io/github/${personalPpl[2].firstname}`}
@@ -140,7 +151,7 @@ function Personal() {
               ) : (
                 <p>Transaction</p>
               )}
-            </div>
+            </div> */}
 
             {/* {
             <div>

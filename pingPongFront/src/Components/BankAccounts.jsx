@@ -28,6 +28,7 @@ function BankAccounts() {
 
   useEffect(() => {
     //10.33.147.9:8081
+    //localhost:8081
     axios
       .get(`http://10.33.147.9:8081/signup/bank?user=${userId}`)
       .then((response) => {
