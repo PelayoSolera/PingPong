@@ -116,7 +116,11 @@ function SignUp() {
           ></TextField>
         </div>
 
-        <Button sx={{ width: "14rem", marginTop: "0.5rem", height: "3rem" }} variant="contained" type="submit">
+        <Button
+          sx={{ width: "14rem", marginTop: "0.5rem", height: "3rem" }}
+          variant="contained"
+          type="submit"
+        >
           Sign Up
         </Button>
       </form>

@@ -165,3 +165,12 @@ p, h1, h2, h3, h4, h5, h6 {
   .userInfo {
     margin: 1rem 20px;
   }
+
+  .transactionAvatar {
+    width: 4rem;
+  }
+
+  .amountP {
+    color: red;
+    font-weight: 600;
+  }
