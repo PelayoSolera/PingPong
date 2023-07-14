@@ -10,6 +10,7 @@ import UserDetails from "./UserDetails";
 import Sidebar from "./Sidebar";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
+import PersonalPpl from "./PersonalPpl";
 
 const drawerWidth = 240;
 
@@ -21,6 +22,9 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
     boxSizing: "border-box",
   },
 }));
+
+//10.33.147.9:8081
+//localhost:8081
 
 const getPersonalPpl = async () => {
   const { data } = await axios.get("http://10.33.147.9:8081/signup/personal");
@@ -66,94 +70,14 @@ function Personal() {
               Amount: $0 - $1000
             </Button>
             <h5 style={{ marginLeft: "2rem" }}>Personal</h5>
-            <div>
-              {personalPpl ? (
-                <div className="personalCard">
-                  <div classname="personalCardwitImg">
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={`https://unavatar.io/github/${personalPpl[0].firstname}`}
-                    />
-              
-                  </div>
-                    <div className="personalCardBody">
-                      <p>
-                        {personalPpl[0].firstname} {personalPpl[0].lastname}{" "}
-                        paid {userInfo.firstname} {userInfo.lastname}
-                      </p>
-                      <p>Payment: {personalPpl[0].id_fake}</p>
-                    </div>
-                  <div className="personalCardAmount">
-                    {personalPpl[0].amount}
-                  </div>
-                </div>
-              ) : (
-                <p>Transaction</p>
-              )}
-            </div>
-            <div>
-              {personalPpl ? (
-                <div className="personalCard">
-                  <div classname="personalCardwitImg">
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={`https://unavatar.io/github/${personalPpl[1].firstname}`}
-                    />
-                  </div>
 
-                    <div className="personalCardBody">
-                      <p>
-                        {personalPpl[1].firstname} {personalPpl[1].lastname}{" "}
-                        paid {userInfo.firstname} {userInfo.lastname}
-                      </p>
-                      <p>Payment: {personalPpl[1].id_fake}</p>
-                    </div>
-                  <div className="personalCardAmount">
-                    {personalPpl[1].amount}
-                  </div>
-                </div>
-              ) : (
-                <p>Transaction</p>
-              )}
-            </div>
-            <div>
-              {personalPpl ? (
-                <div className="personalCard">
-                  <div classname="personalCardwitImg">
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={`https://unavatar.io/github/${personalPpl[2].firstname}`}
-                    />
-
-                  </div>
-                    <div className="personalCardBody">
-                      <p>
-                        {personalPpl[2].firstname} {personalPpl[2].lastname}{" "}
-                        paid {userInfo.firstname} {userInfo.lastname}
-                      </p>
-                      <p>Payment: {personalPpl[2].id_fake}</p>
-                    </div>
-                  <div className="personalCardAmount">
-                    {personalPpl[2].amount}
-                  </div>
-                </div>
-              ) : (
-                <p>Transaction</p>
-              )}
-            </div>
-
-            {/* {
-            <div>
-            {personalPpl?.map((person, index) => {
-              return (
-                <div style={{ backgroundColor: "red" }} key={index}>
-                <p>{person.firstName}</p>
-                <p>{person.lastName}</p>
-                </div>
-                );
-              })}
-              </div>
-            } */}
+            {personalPpl ? (
+              personalPpl.map((person) => (
+                <PersonalPpl person={person} userInfo={userInfo} />
+              ))
+            ) : (
+              <p>No Transactions</p>
+            )}
           </Paper>
         </div>
       </div>

@@ -101,6 +101,19 @@ p, h1, h2, h3, h4, h5, h6 {
   color: #333;
 }
 
+.signupForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.signInput {
+  margin: 0.5rem 0;
+}
+
+
 .app-logo {
   font-weight: 600;
   text-align: center;
@@ -151,4 +164,13 @@ p, h1, h2, h3, h4, h5, h6 {
 
   .userInfo {
     margin: 1rem 20px;
+  }
+
+  .transactionAvatar {
+    width: 4rem;
+  }
+
+  .amountP {
+    color: red;
+    font-weight: 600;
   }
