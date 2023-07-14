@@ -25,7 +25,7 @@ function UserDetails({ userInfo }) {
       )}
 
       <p>
-        <b>$ 1,681</b>
+        <b>$ 1,681.37</b>
         <br />
         <span>Account Balance</span>
       </p>

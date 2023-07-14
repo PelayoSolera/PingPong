@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Settings from "./Components/Settings.jsx";
 import Personal from "./Components/Personal.jsx";
 import SignUp from "./Components/SignUp.jsx";
+import Transaction from "./Components/Transaction";
 import BankAccounts from "./Components/BankAccounts.jsx";
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/personal",
     element: <Personal />,
+  },
+  {
+    path: "/transaction/",
+    element: <Transaction />,
   },
 ]);
 

@@ -56,7 +56,7 @@ function Personal() {
           <Sidebar />
         </StyledDrawer>
         <div className="personalBody">
-          <Paper sx={{ margin: "10rem, 10rem", height: "700px" }}>
+          <Paper sx={{ margin: "4rem 2rem", height: "700px" }}>
             <Button
               sx={{ width: "10rem", borderRadius: "25px", margin: "2rem" }}
               variant="outlined"
@@ -70,14 +70,15 @@ function Personal() {
               Amount: $0 - $1000
             </Button>
             <h5 style={{ marginLeft: "2rem" }}>Personal</h5>
-
+            <div className="personalPplBody">
             {personalPpl ? (
               personalPpl.map((person) => (
                 <PersonalPpl person={person} userInfo={userInfo} />
-              ))
-            ) : (
-              <p>No Transactions</p>
-            )}
+                ))
+                ) : (
+                  <p>No Transactions</p>
+                  )}
+                  </div>
           </Paper>
         </div>
       </div>
