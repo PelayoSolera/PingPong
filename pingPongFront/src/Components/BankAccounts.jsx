@@ -51,7 +51,7 @@ function BankAccounts() {
         </StyledDrawer>
       </div>
       <div className="bankAccountBody">
-        <Paper>
+        <Paper sx={{margin: "5rem 4rem", padding: "1.5rem"}}>
           <h4>Bank Accounts</h4>
           <div>
             {bankAccountsArr ? (
