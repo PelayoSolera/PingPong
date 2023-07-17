@@ -27,7 +27,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 //localhost:8081
 
 const getPersonalPpl = async () => {
-  const { data } = await axios.get("http://10.33.147.9:8081/signup/personal");
+  const { data } = await axios.get("http://10.33.146.35:8081/signup/personal");
   return data;
 };
 

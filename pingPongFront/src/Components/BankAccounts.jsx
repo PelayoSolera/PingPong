@@ -28,9 +28,10 @@ function BankAccounts() {
 
   useEffect(() => {
     //10.33.147.9:8081
+    //10.33.146.35
     //localhost:8081
     axios
-      .get(`http://10.33.147.9:8081/signup/bank?user=${userId}`)
+      .get(`http://10.33.146.35:8081/signup/bank?user=${userId}`)
       .then((response) => {
         setBankAccountsArr(response.data);
       })
