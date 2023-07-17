@@ -9,6 +9,8 @@ import AppBarLoc from "./AppBar";
 import Sidebar from "./Sidebar";
 import { UserContext } from "../../Context/UserContext";
 import UserDetails from "./UserDetails";
+import BankAccountItem from "./BankAccountItem";
+import { TextField } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -22,9 +24,11 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 }));
 
 function BankAccounts() {
-  const [bankAccountsArr, setBankAccountsArr] = useState();
+  const [bankAccountsArr, setBankAccountsArr] = useState([]);
   const { userInfo } = useContext(UserContext);
   const userId = userInfo?.id;
+  const [bankAccountInput, setBankAccountInput] = useState("");
+  const handleBankAccountInput = (e) => setBankAccountInput(e.target.value);
 
   useEffect(() => {
     //10.33.147.9:8081
@@ -39,6 +43,21 @@ function BankAccounts() {
         console.error("error.response: ", error.response);
       });
   }, []);
+ 
+  const requestBody = { accountName: bankAccountInput, user: { id: userId } };
+  function createBankAccount() {
+    axios
+      .post(`http://10.33.146.35:8081/signup/addBank`, requestBody)
+      .then((response) => {
+        setBankAccountsArr(prevBankAccountsArr => {
+          const updatedBankAccountsArr = [...prevBankAccountsArr, response.data];
+          return updatedBankAccountsArr;
+        });
+      })
+      .catch((error) => {
+        console.error("error.response: ", error.response);
+      });
+  }
 
   return (
     <div>
@@ -52,19 +71,37 @@ function BankAccounts() {
         </StyledDrawer>
       </div>
       <div className="bankAccountBody">
-        <Paper sx={{margin: "5rem 4rem", padding: "1.5rem"}}>
+        <Paper sx={{ margin: "5rem 4rem", padding: "1.5rem" }}>
           <h4>Bank Accounts</h4>
           <div>
             {bankAccountsArr ? (
               bankAccountsArr.map((bankAccount, index) => {
-                return <p key={index}>{bankAccount.accountName}</p>;
+                return (
+                  <BankAccountItem key={index} bankAccount={bankAccount} />
+                );
               })
             ) : (
               <p>O'Jarra - L abadia Bank</p>
             )}
           </div>
           <div>
-            <Button sx={{ width: "10rem" }} variant="contained" type="submit">
+            <TextField
+              sx={{ padding: "0.5rem" }}
+              type="text"
+              name="bankAccount"
+              id="bankAccount"
+              className="bankAccountsTextfield"
+              value={bankAccountInput}
+              onChange={handleBankAccountInput}
+            ></TextField>
+          </div>
+          <div>
+            <Button
+              sx={{ width: "10rem" }}
+              variant="contained"
+              type="submit"
+              onClick={createBankAccount}
+            >
               CREATE
             </Button>
             <Button sx={{ width: "10rem" }} variant="contained" type="submit">
