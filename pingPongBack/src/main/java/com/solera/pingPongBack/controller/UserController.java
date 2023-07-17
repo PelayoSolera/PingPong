@@ -50,7 +50,7 @@ public class UserController {
         personRepository.save(person2);
         personRepository.save(person3);
 
-
+        user.setPassword(null);
         return ResponseEntity.ok(user) ;
     }
 
