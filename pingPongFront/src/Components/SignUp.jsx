@@ -39,7 +39,7 @@ function SignUp() {
       //10.33.147.9:8081
       //localhost:8081
       axios
-        .post("http://10.33.147.9:8081/signup/add", requestBody)
+        .post("http://10.33.146.35:8081/signup/add", requestBody)
         .then((response) => {
           setUserInfo(response.data);
           navigate("/bankaccounts");
