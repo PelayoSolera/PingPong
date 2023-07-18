@@ -120,5 +120,41 @@ public class TestBank extends InitiateDriver {
 
     }
 
+    @Test
+    public void createBankAccountTest() throws Exception {
+
+        WebElement firstNameInput = driver.findElement(By.id("outlined-basic"));
+        firstNameInput.sendKeys("USA");
+        WebElement lastNameInput = driver.findElement(By.name("lastname"));
+        lastNameInput.sendKeys("Bren");
+        WebElement userName = driver.findElement(By.name("userName"));
+        userName.sendKeys("solera@solera.com");
+        WebElement password = driver.findElement(By.name("password"));
+        password.sendKeys("bootcamp2");
+        WebElement confirmpassword = driver.findElement(By.name("confirmpassword"));
+        confirmpassword.sendKeys("s");
+
+        Thread.sleep(2000);
+
+        driver.findElement(By.xpath("//*[@id=\"root\"]/div/form/button")).click();
+
+        Thread.sleep(2000);
+
+        WebElement inputBank = driver.findElement(By.name("bankAccount"));
+        inputBank.sendKeys("Santander");
+
+        Thread.sleep(2000);
+
+        WebElement buttonCreate = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div/div[3]/button[1]"));
+        buttonCreate.click();
+        inputBank.clear();
+
+        Thread.sleep(2000);
+
+        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[2]/ul/li[5]")).click();
+
+        Thread.sleep(1000);
+
+    }
 
 }
