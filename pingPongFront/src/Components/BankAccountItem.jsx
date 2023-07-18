@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-function BankAccountItem({key, bankAccount}) {
+function BankAccountItem({ key, bankAccount }) {
   return (
     <div>
-        <p key={key}>{bankAccount.accountName}</p>
+      <p key={key}>{bankAccount.accountName}</p>
     </div>
-  )
+  );
 }
 
-export default BankAccountItem
+export default BankAccountItem;

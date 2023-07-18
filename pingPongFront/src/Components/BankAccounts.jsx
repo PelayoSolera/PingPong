@@ -44,15 +44,17 @@ function BankAccounts() {
         console.error("error.response: ", error.response);
       });
   }, []);
- 
+
   const requestBody = { accountName: bankAccountInput, user: { id: userId } };
   function createBankAccount() {
     axios
       .post(`http://10.33.147.39:8081/signup/addBank`, requestBody)
       .then((response) => {
-        setBankAccountsArr(prevBankAccountsArr => {
-          const updatedBankAccountsArr = [...prevBankAccountsArr, {accountName: bankAccountInput}];
-          console.log(updatedBankAccountsArr)
+        setBankAccountsArr((prevBankAccountsArr) => {
+          const updatedBankAccountsArr = [
+            ...prevBankAccountsArr,
+            { accountName: bankAccountInput },
+          ];
           return updatedBankAccountsArr;
         });
       })
@@ -60,8 +62,6 @@ function BankAccounts() {
         console.error("error.response: ", error.response);
       });
   }
-
-   
 
   return (
     <div>

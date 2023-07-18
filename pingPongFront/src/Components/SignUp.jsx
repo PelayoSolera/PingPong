@@ -42,6 +42,7 @@ function SignUp() {
         .post("http://10.33.147.39:8081/signup/add", requestBody)
         .then((response) => {
           setUserInfo(response.data);
+
           navigate("/bankaccounts");
         })
         .catch((error) => {

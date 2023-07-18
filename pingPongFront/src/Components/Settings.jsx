@@ -32,15 +32,13 @@ function Settings() {
     e.preventDefault();
     setUserInfo(updatedUserInfo);
     const requestBody = { phone };
-    console.log("phone", requestBody);
-    console.log("userinfooo", userInfo.id);
     axios
       .put(
         `http://10.33.147.39:8081/signup/${userInfo.id}/phone-number`,
         requestBody
       )
       .then((response) => {
-        console.log(response);
+        setPhone(phone);
       })
       .catch((error) => {
         console.error("error.response: ", error.response);

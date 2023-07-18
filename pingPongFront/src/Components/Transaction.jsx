@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import UserDetails from "./UserDetails";
 import { Paper, TextField } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 
 const drawerWidth = 240;
 
@@ -24,9 +24,6 @@ function Transaction() {
   const location = useLocation();
   const { userInfo } = location.state;
   const { person } = location.state;
-
-  console.log("userInfo", userInfo);
-  console.log("person", person);
 
   return (
     <div>
@@ -55,7 +52,7 @@ function Transaction() {
               <div>
                 <div className="transAvatar">
                   <Avatar
-                    sx={{ width: 64, height: 64,  margin: "0 0.5rem" }}
+                    sx={{ width: 64, height: 64, margin: "0 0.5rem" }}
                     className="transactionAvatar"
                     alt="Remy Sharp"
                     src={`https://unavatar.io/github/${person.firstname}`}
@@ -76,18 +73,21 @@ function Transaction() {
                     Payment: {person.id_fake} to {userInfo.fake_id}
                   </p>
                   <div className="thumbieUp">
-                  <p>0</p><ThumbUpOffAltIcon sx={{ fontSize: "3rem", color: "#1769aa"}} />
+                    <p>0</p>
+                    <ThumbUpOffAltIcon
+                      sx={{ fontSize: "3rem", color: "#1769aa" }}
+                    />
                   </div>
                 </div>
                 <div>
-                    <TextField
+                  <TextField
                     sx={{ width: "80%" }}
                     id="outlined-basic"
                     variant="outlined"
                     type="text"
                     name="comment"
                     label="Write a comment..."
-                    ></TextField>
+                  ></TextField>
                 </div>
               </div>
               <div className="personalCardAmount">

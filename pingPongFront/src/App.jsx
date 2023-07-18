@@ -18,7 +18,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/bankaccounts",
-    element: <BankAccounts/>,
+    element: <BankAccounts />,
   },
   {
     path: "/user/settings",

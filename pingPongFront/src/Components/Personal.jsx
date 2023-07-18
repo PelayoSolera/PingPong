@@ -71,14 +71,14 @@ function Personal() {
             </Button>
             <h5 style={{ marginLeft: "2rem" }}>Personal</h5>
             <div className="personalPplBody">
-            {personalPpl ? (
-              personalPpl.map((person) => (
-                <PersonalPpl person={person} userInfo={userInfo} />
+              {personalPpl ? (
+                personalPpl.map((person) => (
+                  <PersonalPpl person={person} userInfo={userInfo} />
                 ))
-                ) : (
-                  <p>No Transactions</p>
-                  )}
-                  </div>
+              ) : (
+                <p>No Transactions</p>
+              )}
+            </div>
           </Paper>
         </div>
       </div>
