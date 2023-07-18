@@ -157,4 +157,33 @@ public class TestBank extends InitiateDriver {
 
     }
 
+    @Test
+    public void deleteBankAccountTest() throws Exception {
+
+        WebElement firstNameInput = driver.findElement(By.id("outlined-basic"));
+        firstNameInput.sendKeys("Bear");
+        WebElement lastNameInput = driver.findElement(By.name("lastname"));
+        lastNameInput.sendKeys("Bren");
+        WebElement userName = driver.findElement(By.name("userName"));
+        userName.sendKeys("solera@solera.com");
+        WebElement password = driver.findElement(By.name("password"));
+        password.sendKeys("bootcamp2");
+        WebElement confirmpassword = driver.findElement(By.name("confirmpassword"));
+        confirmpassword.sendKeys("s");
+
+        Thread.sleep(2000);
+
+        driver.findElement(By.xpath("//*[@id=\"root\"]/div/form/button")).click();
+        Thread.sleep(2000);
+
+        driver.findElement(By.cssSelector("#root > div > div.bankAccountBody > div > div:nth-child(2) > div:nth-child(1) > div.bankAccountItemSVG > svg")).click();
+
+        Thread.sleep(2000);
+
+        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[2]/ul/li[5]")).click();
+
+        Thread.sleep(1000);
+
+    }
+
 }
