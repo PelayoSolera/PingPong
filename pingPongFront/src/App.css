@@ -71,7 +71,6 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: rgb(235, 235, 235);
   font-family: Roboto
-
 }
 
 /*
@@ -242,7 +241,7 @@ h6 {
 }
 
 .pplCard {
-  
+
   /* border-top: solid 1px lightgray; */
   border-bottom: solid 1px lightgray;
   display: flex;
