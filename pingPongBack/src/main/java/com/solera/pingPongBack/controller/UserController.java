@@ -56,16 +56,17 @@ public class UserController {
 
     //http://localhost:8081/signup/bank?user=1
     @GetMapping("/bank")
-    public List<Map<String, String>> getNameBankById(@RequestParam("user") User user) {
+    public List<Map<String, Object>> getNameBankById(@RequestParam("user") User user) {
         System.out.println("-------------> " + user);
         List<Bank> banks = bankRepository.findByUserId(user);
-        List<Map<String, String>> bankNames = new ArrayList<>();
+        List<Map<String, Object>> bankDetails = new ArrayList<>();
         for (Bank bank : banks) {
-            Map<String, String> bankMap = new HashMap<>();
+            Map<String, Object> bankMap = new HashMap<>();
+            bankMap.put("accountId", bank.getAccountId());
             bankMap.put("accountName", bank.getAccountName());
-            bankNames.add(bankMap);
+            bankDetails.add(bankMap);
         }
-        return bankNames;
+        return bankDetails;
     }
 
     private static String generarId() {
@@ -95,7 +96,7 @@ public class UserController {
 
     //http://10.33.147.9:8081/signup/2/delete-bankname
     @DeleteMapping("/{user}/delete-bankname")
-    public ResponseEntity<String> updateUser(@PathVariable("user") User user, @RequestBody String deleteBank) {
+    public ResponseEntity<String> deleteBankName(@PathVariable("user") User user, @RequestBody String deleteBank) {
         System.out.println("-------------> " + user);
         List<Bank> banks = bankRepository.findByUserId(user);
 
@@ -111,5 +112,22 @@ public class UserController {
         return ResponseEntity.ok("Delete success");
     }
 
+
+    //http://10.33.147.9:8081/signup/2/delete-bankname
+    @DeleteMapping("/{user}/delete-id")
+    public ResponseEntity<String> deleteBankId(@PathVariable("user") User user, @RequestBody String deleteBank) {
+        System.out.println("-------------> " + user);
+        List<Bank> banks = bankRepository.findByUserId(user);
+
+        for (Bank bank : banks) {
+            String compare = String.valueOf(bank.getAccountId());
+
+            if (compare.equals(deleteBank)) {
+                bankRepository.delete(bank);
+            }
+        }
+
+        return ResponseEntity.ok("Delete success");
+    }
 
 }
