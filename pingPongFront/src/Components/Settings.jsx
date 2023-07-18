@@ -36,7 +36,7 @@ function Settings() {
     console.log("userinfooo", userInfo.id);
     axios
       .put(
-        `http://10.33.146.35:8081/signup/${userInfo.id}/phone-number`,
+        `http://10.33.147.39:8081/signup/${userInfo.id}/phone-number`,
         requestBody
       )
       .then((response) => {

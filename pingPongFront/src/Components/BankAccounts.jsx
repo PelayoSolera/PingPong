@@ -29,13 +29,14 @@ function BankAccounts() {
   const userId = userInfo?.id;
   const [bankAccountInput, setBankAccountInput] = useState("");
   const handleBankAccountInput = (e) => setBankAccountInput(e.target.value);
+  const [bankAccountCount, setBankAccountCount] = useState(0);
 
   useEffect(() => {
     //10.33.147.9:8081
     //10.33.146.35
     //localhost:8081
     axios
-      .get(`http://10.33.146.35:8081/signup/bank?user=${userId}`)
+      .get(`http://10.33.147.39:8081/signup/bank?user=${userId}`)
       .then((response) => {
         setBankAccountsArr(response.data);
       })
@@ -47,10 +48,11 @@ function BankAccounts() {
   const requestBody = { accountName: bankAccountInput, user: { id: userId } };
   function createBankAccount() {
     axios
-      .post(`http://10.33.146.35:8081/signup/addBank`, requestBody)
+      .post(`http://10.33.147.39:8081/signup/addBank`, requestBody)
       .then((response) => {
         setBankAccountsArr(prevBankAccountsArr => {
-          const updatedBankAccountsArr = [...prevBankAccountsArr, response.data];
+          const updatedBankAccountsArr = [...prevBankAccountsArr, {accountName: bankAccountInput}];
+          console.log(updatedBankAccountsArr)
           return updatedBankAccountsArr;
         });
       })
@@ -58,6 +60,8 @@ function BankAccounts() {
         console.error("error.response: ", error.response);
       });
   }
+
+   
 
   return (
     <div>
