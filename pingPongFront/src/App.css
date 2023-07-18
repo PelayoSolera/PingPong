@@ -71,7 +71,6 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: rgb(235, 235, 235);
   font-family: Roboto
-
 }
 
 /*
@@ -242,7 +241,7 @@ h6 {
 }
 
 .pplCard {
-  
+
   /* border-top: solid 1px lightgray; */
   border-bottom: solid 1px lightgray;
   display: flex;
@@ -272,4 +271,18 @@ h6 {
 
 .thumbsNMessages p {
   margin: auto 2rem;
+}
+
+.bankAccountItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  padding-right: 2rem;
+  border-bottom: 1px solid lightgray;
+}	
+
+.bankAccountItemPee{
+  font-weight: 500;
 }

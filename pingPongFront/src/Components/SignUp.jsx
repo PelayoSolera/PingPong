@@ -36,12 +36,13 @@ function SignUp() {
         phone,
         balance,
       };
-      //10.33.147.9:8081
+      //10.33.147.9:8081 146.35
       //localhost:8081
       axios
-        .post("http://10.33.146.35:8081/signup/add", requestBody)
+        .post("http://10.33.147.39:8081/signup/add", requestBody)
         .then((response) => {
           setUserInfo(response.data);
+
           navigate("/bankaccounts");
         })
         .catch((error) => {

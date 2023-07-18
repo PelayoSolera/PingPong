@@ -3,12 +3,14 @@ import "./BankAccounts";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
-import { Paper } from "@mui/material";
+import { Paper, accordionActionsClasses } from "@mui/material";
 import axios from "axios";
 import AppBarLoc from "./AppBar";
 import Sidebar from "./Sidebar";
 import { UserContext } from "../../Context/UserContext";
 import UserDetails from "./UserDetails";
+import BankAccountItem from "./BankAccountItem";
+import { TextField } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -22,16 +24,19 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 }));
 
 function BankAccounts() {
-  const [bankAccountsArr, setBankAccountsArr] = useState();
+  const [bankAccountsArr, setBankAccountsArr] = useState([]);
   const { userInfo } = useContext(UserContext);
   const userId = userInfo?.id;
+  const [bankAccountInput, setBankAccountInput] = useState("");
+  const handleBankAccountInput = (e) => setBankAccountInput(e.target.value);
+  const [bankAccountCount, setBankAccountCount] = useState(0);
 
   useEffect(() => {
     //10.33.147.9:8081
     //10.33.146.35
     //localhost:8081
     axios
-      .get(`http://10.33.146.35:8081/signup/bank?user=${userId}`)
+      .get(`http://10.33.147.39:8081/signup/bank?user=${userId}`)
       .then((response) => {
         setBankAccountsArr(response.data);
       })
@@ -39,6 +44,78 @@ function BankAccounts() {
         console.error("error.response: ", error.response);
       });
   }, []);
+
+  const requestBody = { accountName: bankAccountInput, user: { id: userId } };
+  function createBankAccount() {
+    axios
+      .post(`http://10.33.147.39:8081/signup/addBank`, requestBody)
+      .then((response) => {
+        setBankAccountsArr((prevBankAccountsArr) => {
+          const updatedBankAccountsArr = [
+            ...prevBankAccountsArr,
+            { accountName: bankAccountInput },
+          ];
+          return updatedBankAccountsArr;
+        });
+      })
+      .catch((error) => {
+        console.error("error.response: ", error.response);
+      });
+  }
+
+  function deleteBankAccount(accountId) {
+    const requestBody2 = {accountId: accountId};
+    console.log("requestBody", requestBody2)
+    axios
+      .delete(`http://10.33.147.39:8081/signup/${userId}/delete-id`, {data: {requestBody2}})
+      .then((response) => {
+        console.log(response)
+        setBankAccountsArr((prevBankAccountsArr) => {
+          const updatedBankAccountsArr = prevBankAccountsArr.filter(
+            (bankAccount) => bankAccount.accountId !== accountId
+          );
+          return updatedBankAccountsArr;
+        });
+      })
+      .catch((error) => {
+        console.error("error.response: ", error.response);
+      });
+  }
+
+/*
+  useEffect(() => {
+    //10.33.147.9:8081
+    //10.33.146.35
+    //localhost:8081
+    axios
+      .get(`http://10.33.147.39:8081/signup/bank?user=${userId}`)
+      .then((response) => {
+        setBankAccountsArr(response.data);
+      })
+      .catch((error) => {
+        console.error("error.response: ", error.response);
+      });
+  }, []);
+
+  const requestBody = { accountName: bankAccountInput, user: { id: userId } };
+  function createBankAccount() {
+    axios
+      .post(`http://10.33.147.39:8081/signup/addBank`, requestBody)
+      .then((response) => {
+        console.log("rispons ", response)
+        setBankAccountsArr((prevBankAccountsArr) => {
+          const updatedBankAccountsArr = [
+            ...prevBankAccountsArr,
+            { accountName: bankAccountInput },
+          ];
+          return updatedBankAccountsArr;
+        });
+      })
+      .catch((error) => {
+        console.error("error.response: ", error.response);
+      });
+  }
+  */
 
   return (
     <div>
@@ -52,19 +129,37 @@ function BankAccounts() {
         </StyledDrawer>
       </div>
       <div className="bankAccountBody">
-        <Paper sx={{margin: "5rem 4rem", padding: "1.5rem"}}>
+        <Paper sx={{ margin: "5rem 4rem", padding: "1.5rem" }}>
           <h4>Bank Accounts</h4>
           <div>
             {bankAccountsArr ? (
-              bankAccountsArr.map((bankAccount, index) => {
-                return <p key={index}>{bankAccount.accountName}</p>;
+              bankAccountsArr.map((bankAccount) => {
+                return (
+                  <BankAccountItem bankAccount={bankAccount} deleteBankAccount={deleteBankAccount} />
+                );
               })
             ) : (
               <p>O'Jarra - L abadia Bank</p>
             )}
           </div>
           <div>
-            <Button sx={{ width: "10rem" }} variant="contained" type="submit">
+            <TextField
+              sx={{ padding: "0.5rem" }}
+              type="text"
+              name="bankAccount"
+              id="bankAccount"
+              className="bankAccountsTextfield"
+              value={bankAccountInput}
+              onChange={handleBankAccountInput}
+            ></TextField>
+          </div>
+          <div>
+            <Button
+              sx={{ width: "10rem" }}
+              variant="contained"
+              type="submit"
+              onClick={createBankAccount}
+            >
               CREATE
             </Button>
             <Button sx={{ width: "10rem" }} variant="contained" type="submit">
