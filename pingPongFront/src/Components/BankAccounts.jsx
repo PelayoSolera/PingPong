@@ -3,7 +3,7 @@ import "./BankAccounts";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
-import { Paper } from "@mui/material";
+import { Paper, accordionActionsClasses } from "@mui/material";
 import axios from "axios";
 import AppBarLoc from "./AppBar";
 import Sidebar from "./Sidebar";
@@ -63,6 +63,60 @@ function BankAccounts() {
       });
   }
 
+  function deleteBankAccount(accountId) {
+    const requestBody2 = {accountId: accountId};
+    console.log("requestBody", requestBody2)
+    axios
+      .delete(`http://10.33.147.39:8081/signup/${userId}/delete-id`, {data: {requestBody2}})
+      .then((response) => {
+        console.log(response)
+        setBankAccountsArr((prevBankAccountsArr) => {
+          const updatedBankAccountsArr = prevBankAccountsArr.filter(
+            (bankAccount) => bankAccount.accountId !== accountId
+          );
+          return updatedBankAccountsArr;
+        });
+      })
+      .catch((error) => {
+        console.error("error.response: ", error.response);
+      });
+  }
+
+/*
+  useEffect(() => {
+    //10.33.147.9:8081
+    //10.33.146.35
+    //localhost:8081
+    axios
+      .get(`http://10.33.147.39:8081/signup/bank?user=${userId}`)
+      .then((response) => {
+        setBankAccountsArr(response.data);
+      })
+      .catch((error) => {
+        console.error("error.response: ", error.response);
+      });
+  }, []);
+
+  const requestBody = { accountName: bankAccountInput, user: { id: userId } };
+  function createBankAccount() {
+    axios
+      .post(`http://10.33.147.39:8081/signup/addBank`, requestBody)
+      .then((response) => {
+        console.log("rispons ", response)
+        setBankAccountsArr((prevBankAccountsArr) => {
+          const updatedBankAccountsArr = [
+            ...prevBankAccountsArr,
+            { accountName: bankAccountInput },
+          ];
+          return updatedBankAccountsArr;
+        });
+      })
+      .catch((error) => {
+        console.error("error.response: ", error.response);
+      });
+  }
+  */
+
   return (
     <div>
       <div>
@@ -79,9 +133,9 @@ function BankAccounts() {
           <h4>Bank Accounts</h4>
           <div>
             {bankAccountsArr ? (
-              bankAccountsArr.map((bankAccount, index) => {
+              bankAccountsArr.map((bankAccount) => {
                 return (
-                  <BankAccountItem key={index} bankAccount={bankAccount} />
+                  <BankAccountItem bankAccount={bankAccount} deleteBankAccount={deleteBankAccount} />
                 );
               })
             ) : (

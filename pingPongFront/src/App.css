@@ -272,3 +272,17 @@ h6 {
 .thumbsNMessages p {
   margin: auto 2rem;
 }
+
+.bankAccountItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  padding-right: 2rem;
+  border-bottom: 1px solid lightgray;
+}	
+
+.bankAccountItemPee{
+  font-weight: 500;
+}
