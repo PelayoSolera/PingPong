@@ -115,14 +115,13 @@ public class UserController {
 
     //http://10.33.147.9:8081/signup/2/delete-bankname
     @DeleteMapping("/{user}/delete-id")
-    public ResponseEntity<String> deleteBankId(@PathVariable("user") User user, @RequestBody String deleteBank) {
+    public ResponseEntity<String> deleteBankId(@PathVariable("user") User user, @RequestBody Bank deleteBank) {
         System.out.println("-------------> " + user);
         List<Bank> banks = bankRepository.findByUserId(user);
 
         for (Bank bank : banks) {
-            String compare = String.valueOf(bank.getAccountId());
 
-            if (compare.equals(deleteBank)) {
+            if (bank.getAccountId() == (deleteBank.getAccountId())) {
                 bankRepository.delete(bank);
             }
         }
